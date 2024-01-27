@@ -3,18 +3,22 @@ extends CharacterBody2D
 @onready var anim = get_node("AnimatedSprite2D")
 
 var player
-var SPEED = 300
+var SPEED = 150
 var chase = false
 
 func _physics_process(delta):
+	player = get_node("../Player")
+	var direction = (player.global_position - self.global_position).normalized()
+	
 	if chase == true:
-		var direction = (player.global_position - self.global_position).normalized()
 		velocity = direction * SPEED
 		
 		if direction.length() > 0:
-			anim.play("Run")
+			if anim.animation != "Death":
+				anim.play("Run")
 			anim.flip_h = direction.x < 0
 		else:
+
 			anim.play("Idle")
 	else:
 		anim.play("Idle")
@@ -22,6 +26,12 @@ func _physics_process(delta):
 	
 func _on_player_detection_body_entered(body):
 	if body.name == "Player":
-		player = get_node("../Player")
 		#player = body
 		chase = true;
+
+
+func _on_enemy_death_body_entered(body):
+	if body.name == "Player":
+		anim.play("Death")
+		await anim.animation_finished
+		self.queue_free()
