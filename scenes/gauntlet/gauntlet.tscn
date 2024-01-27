@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgy627vpf0i1m"]
 
-[ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://Player/Player.tscn" id="1_2ti2f"]
-[ext_resource type="PackedScene" uid="uid://bnn0qs3fhbgsh" path="res://Player/Necromancer.tscn" id="2_slrmc"]
+[ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="1_f056i"]
+[ext_resource type="PackedScene" uid="uid://bnn0qs3fhbgsh" path="res://entities/enemies/Necromancer.tscn" id="2_6dfya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tanib"]
 size = Vector2(1171, 15)
@@ -11,7 +11,7 @@ size = Vector2(14, 663)
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_2ti2f")]
+[node name="Player" parent="." instance=ExtResource("1_f056i")]
 position = Vector2(489, 298)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -37,5 +37,5 @@ offset_top = 438.0
 offset_right = 1167.0
 offset_bottom = 457.0
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_slrmc")]
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_6dfya")]
 position = Vector2(678, 304)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=52 format=3 uid="uid://bnn0qs3fhbgsh"]
 
-[ext_resource type="Texture2D" uid="uid://w34n4o0hbsr2" path="res://assets/Necromancer.png" id="1_e3vfi"]
-[ext_resource type="Script" path="res://Player/Necromancer.gd" id="1_qagpp"]
+[ext_resource type="Texture2D" uid="uid://w34n4o0hbsr2" path="res://entities/assets/sprites/Necromancer.png" id="1_e3vfi"]
+[ext_resource type="Script" path="res://entities/enemies/Necromancer.gd" id="1_qagpp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_be2om"]
 height = 50.0

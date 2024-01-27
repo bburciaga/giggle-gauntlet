@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp5aloci2bgox"
-path="res://.godot/imported/Generic_Man_Jump.png-2917f645e11d1b427a640912f7a7cf89.ctex"
+uid="uid://3786en3gvm6b"
+path="res://.godot/imported/Generic_Man_1_Handed_Attack_R.png-f5bdd9c3b8348b1f3850fd90234e8bca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Base_Sprites/Full/Generic_Man_Jump.png"
-dest_files=["res://.godot/imported/Generic_Man_Jump.png-2917f645e11d1b427a640912f7a7cf89.ctex"]
+source_file="res://entities/assets/sprites/Base_Sprites/Full/Generic_Man_1_Handed_Attack_R.png"
+dest_files=["res://.godot/imported/Generic_Man_1_Handed_Attack_R.png-f5bdd9c3b8348b1f3850fd90234e8bca.ctex"]
 
 [params]
 

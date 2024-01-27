@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqobf42x7kbcl"
-path="res://.godot/imported/Generic_Man_1_Handed_Attack_L.png-41970df6dce48ba614b426a203009bce.ctex"
+uid="uid://w34n4o0hbsr2"
+path="res://.godot/imported/Necromancer.png-049f52faeb1e698574e3e70fe3cd6a57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Base_Sprites/Full/Generic_Man_1_Handed_Attack_L.png"
-dest_files=["res://.godot/imported/Generic_Man_1_Handed_Attack_L.png-41970df6dce48ba614b426a203009bce.ctex"]
+source_file="res://entities/assets/sprites/Necromancer.png"
+dest_files=["res://.godot/imported/Necromancer.png-049f52faeb1e698574e3e70fe3cd6a57.ctex"]
 
 [params]
 

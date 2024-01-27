@@ -14,6 +14,8 @@ func _physics_process(delta):
 	
 func _on_player_detection_body_entered(body):
 	if body.name == "Player":
-		player = body
+		player = get_node("../Player")
+		#player = get_node("/root/entities/player/Player")
+		#player = body
 		chase = true;
 		print(player)
