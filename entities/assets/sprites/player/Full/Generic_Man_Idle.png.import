@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sl1fcetbeoxw"
-path="res://.godot/imported/Generic_Man_Run.png-8bc93ea6b9518b4d413eafe8bc40f5af.ctex"
+uid="uid://btc3chabdpnlc"
+path="res://.godot/imported/Generic_Man_Idle.png-ae268df2d3c31ddc5e90ba5686000e0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/assets/sprites/Base_Sprites/Full/Generic_Man_Run.png"
-dest_files=["res://.godot/imported/Generic_Man_Run.png-8bc93ea6b9518b4d413eafe8bc40f5af.ctex"]
+source_file="res://entities/assets/sprites/player/Full/Generic_Man_Idle.png"
+dest_files=["res://.godot/imported/Generic_Man_Idle.png-ae268df2d3c31ddc5e90ba5686000e0e.ctex"]
 
 [params]
 

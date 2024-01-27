@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var anim = get_node("AnimatedSprite2D")
 
+var SPEED = 300
+
 func _physics_process(delta):
 	var direction = Input.get_vector(
 		"move_left",
@@ -9,10 +11,11 @@ func _physics_process(delta):
 		"move_up",
 		"move_down"
 	)
-	velocity = direction * 300
+	velocity = direction * SPEED
 	
 	if direction.length() > 0:
 		anim.play("Run")
+		anim.flip_h = direction.x < 0
 	else:
 		anim.play("Idle")
 		

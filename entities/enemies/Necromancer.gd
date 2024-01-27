@@ -1,21 +1,27 @@
 extends CharacterBody2D
 
+@onready var anim = get_node("AnimatedSprite2D")
+
 var player
-var speed = 300
+var SPEED = 300
 var chase = false
 
 func _physics_process(delta):
 	if chase == true:
-		#print(player.global_position)
 		var direction = (player.global_position - self.global_position).normalized()
-		velocity = direction * speed
-		print(velocity.x)
+		velocity = direction * SPEED
+		
+		if direction.length() > 0:
+			anim.play("Run")
+			anim.flip_h = direction.x < 0
+		else:
+			anim.play("Idle")
+	else:
+		anim.play("Idle")
 	move_and_slide()
 	
 func _on_player_detection_body_entered(body):
 	if body.name == "Player":
 		player = get_node("../Player")
-		#player = get_node("/root/entities/player/Player")
 		#player = body
 		chase = true;
-		print(player)
