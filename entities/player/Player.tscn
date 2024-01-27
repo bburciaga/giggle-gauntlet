@@ -1,9 +1,9 @@
 [gd_scene load_steps=23 format=3 uid="uid://clhmrsqbyjwkw"]
 
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_1ufj7"]
-[ext_resource type="Texture2D" uid="uid://btc3chabdpnlc" path="res://Base_Sprites/Full/Generic_Man_Idle.png" id="1_vk2q6"]
-[ext_resource type="Texture2D" uid="uid://cp5aloci2bgox" path="res://Base_Sprites/Full/Generic_Man_Jump.png" id="3_4o4i5"]
-[ext_resource type="Texture2D" uid="uid://sl1fcetbeoxw" path="res://Base_Sprites/Full/Generic_Man_Run.png" id="4_rg3f8"]
+[ext_resource type="Script" path="res://entities/player/Player.gd" id="1_1ufj7"]
+[ext_resource type="Texture2D" uid="uid://btc3chabdpnlc" path="res://entities/assets/sprites/Base_Sprites/Full/Generic_Man_Idle.png" id="1_vk2q6"]
+[ext_resource type="Texture2D" uid="uid://cp5aloci2bgox" path="res://entities/assets/sprites/Base_Sprites/Full/Generic_Man_Jump.png" id="3_4o4i5"]
+[ext_resource type="Texture2D" uid="uid://sl1fcetbeoxw" path="res://entities/assets/sprites/Base_Sprites/Full/Generic_Man_Run.png" id="4_rg3f8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a22av"]
 

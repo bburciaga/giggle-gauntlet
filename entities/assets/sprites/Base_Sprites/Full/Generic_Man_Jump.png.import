@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w34n4o0hbsr2"
-path="res://.godot/imported/Necromancer.png-b2d6e7cee686ff7cf23fe7b97f1c74c9.ctex"
+uid="uid://cp5aloci2bgox"
+path="res://.godot/imported/Generic_Man_Jump.png-8ba25d528db1d1e977d314f3742a2368.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Necromancer.png"
-dest_files=["res://.godot/imported/Necromancer.png-b2d6e7cee686ff7cf23fe7b97f1c74c9.ctex"]
+source_file="res://entities/assets/sprites/Base_Sprites/Full/Generic_Man_Jump.png"
+dest_files=["res://.godot/imported/Generic_Man_Jump.png-8ba25d528db1d1e977d314f3742a2368.ctex"]
 
 [params]
 

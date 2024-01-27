@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3786en3gvm6b"
-path="res://.godot/imported/Generic_Man_1_Handed_Attack_R.png-ba391d3c58514dc08d86199f36ca6e78.ctex"
+uid="uid://sl1fcetbeoxw"
+path="res://.godot/imported/Generic_Man_Run.png-8bc93ea6b9518b4d413eafe8bc40f5af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Base_Sprites/Full/Generic_Man_1_Handed_Attack_R.png"
-dest_files=["res://.godot/imported/Generic_Man_1_Handed_Attack_R.png-ba391d3c58514dc08d86199f36ca6e78.ctex"]
+source_file="res://entities/assets/sprites/Base_Sprites/Full/Generic_Man_Run.png"
+dest_files=["res://.godot/imported/Generic_Man_Run.png-8bc93ea6b9518b4d413eafe8bc40f5af.ctex"]
 
 [params]
 
