@@ -3,19 +3,23 @@ extends CharacterBody2D
 enum WeaponState {
 	INACTIVE,
   WATERGUN,
-	GNOME
+	GNOME,
+	BANANA
 }
 
 @onready var anim: Node = get_node("AnimatedSprite2D")
 @onready var gnomeWeapon: Node = get_node("GnomeWeapon")
 @onready var watergunWeapon: Node = get_node("WaterGunWeapon")
 const water_path: Resource = preload("res://entities/projectiles/Water.tscn")
+const banana_path = preload("res://entities/projectiles/Banana.tscn")
 
 var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
 var enemy
 var weaponState: WeaponState = WeaponState.INACTIVE
 var health = 6
+var bananaCooldown: float = 1.0
+var canDropBanana: bool = true
 
 func _ready() -> void:
 	gnomeWeapon.position = INITIAL_WEAPON_POSITION
@@ -49,14 +53,19 @@ func move(direction) -> void:
 
 func melee (direction):
 	if Input.is_action_pressed("ui_accept"):
-		if (weaponState == WeaponState.GNOME):
-			if(direction.x < 0):
-				gnomeWeapon.rotation_degrees = -45.0
-				gnomeWeapon.position = Vector2(-15, -5)
-			else:
-				gnomeWeapon.rotation_degrees = 45.0
-				gnomeWeapon.position = Vector2(15, -5)
-			gnomeWeapon.visible = true
+		match weaponState:
+			WeaponState.GNOME:
+				if(direction.x < 0):
+					gnomeWeapon.rotation_degrees = -45.0
+					gnomeWeapon.position = Vector2(-15, -5)
+				else:
+					gnomeWeapon.rotation_degrees = 45.0
+					gnomeWeapon.position = Vector2(15, -5)
+				gnomeWeapon.visible = true
+			WeaponState.BANANA:
+				if canDropBanana:
+					drop_banana()
+					start_cooldown()
 	else:
 		gnomeWeapon.position = INITIAL_WEAPON_POSITION
 		gnomeWeapon.visible = true
@@ -72,6 +81,18 @@ func shoot() -> void:
 		if Input.is_action_just_pressed("arrow_down"):
 			add_projectile(90.0)
 
+func drop_banana():
+	var banana_instance = banana_path.instantiate()
+	banana_instance.position = position
+	get_parent().add_child(banana_instance)
+
+func start_cooldown():
+	canDropBanana = false
+	$CooldownTimer.start()
+
+func _on_cooldown_timer_timeout():
+	canDropBanana = true
+	
 ###### Activation Functions ######
 
 func activate_gnome_weapon() -> void:
@@ -82,7 +103,12 @@ func activate_water_gun_weapon() -> void:
 	weaponState = WeaponState.WATERGUN
 	# visible true
 
+func activate_banana_weapon() -> void:
+	weaponState = WeaponState.BANANA
+	# visible true
+
 ###### Helpers ######
+
 func add_projectile(degree: float) -> void:
 	var instance: Water = water_path.instantiate()
 	instance.transform = $CollisionShape2D.global_transform
