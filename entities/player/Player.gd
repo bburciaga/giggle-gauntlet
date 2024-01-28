@@ -6,10 +6,10 @@ enum WeaponState {
 	GNOME
 }
 
-@onready var anim = get_node("AnimatedSprite2D")
-@onready var gnomeWeapon = get_node("GnomeWeapon")
-@onready var watergunWeapon = get_node("WaterGunWeapon")
-const water_path = preload("res://entities/projectiles/Water.tscn")
+@onready var anim: Node = get_node("AnimatedSprite2D")
+@onready var gnomeWeapon: Node = get_node("GnomeWeapon")
+@onready var watergunWeapon: Node = get_node("WaterGunWeapon")
+const water_path: Resource = preload("res://entities/projectiles/Water.tscn")
 
 var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
@@ -20,7 +20,7 @@ var health = 6
 func _ready() -> void:
 	gnomeWeapon.position = INITIAL_WEAPON_POSITION
 	
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	var direction = Input.get_vector(
 		"move_left",
 		"move_right",
@@ -31,13 +31,13 @@ func _physics_process(delta):
 	melee(direction)
 	shoot()
 
-func _on_gnome_hit_area_entered(area):
+func _on_gnome_hit_area_entered(area) -> void:
 	if (area.is_in_group("Enemies")):
 		area.take_damage()
 	
-# Input Functions
+###### Input Functions ######
 
-func move(direction):
+func move(direction) -> void:
 	velocity = direction * SPEED
 	
 	if direction.length() > 0:
@@ -61,39 +61,30 @@ func melee (direction):
 		gnomeWeapon.position = INITIAL_WEAPON_POSITION
 		gnomeWeapon.visible = true
 	
-func shoot():
+func shoot() -> void:
 	if WeaponState.WATERGUN == weaponState:
 		if Input.is_action_just_pressed("arrow_right"):
-			var instance = water_path.instantiate()
-			instance.transform = $CollisionShape2D.global_transform
-			instance.rotation = 0
-			owner.add_child(instance)
-		
+			add_projectile(0.0)
 		if Input.is_action_just_pressed("arrow_left"):
-			var instance = water_path.instantiate()
-			instance.transform = $CollisionShape2D.global_transform
-			instance.rotation_degrees = 180.0
-			owner.add_child(instance)
-			
+			add_projectile(180.0)
 		if Input.is_action_just_pressed("arrow_up"):
-			var instance = water_path.instantiate()
-			instance.transform = $CollisionShape2D.global_transform
-			instance.rotation_degrees = 270.0
-			owner.add_child(instance)
-			
+			add_projectile(270.0)
 		if Input.is_action_just_pressed("arrow_down"):
-			var instance = water_path.instantiate()
-			instance.transform = $CollisionShape2D.global_transform
-			instance.rotation_degrees = 90.0
-			owner.add_child(instance)
-		
-# Activation Functions
+			add_projectile(90.0)
 
-func activate_gnome_weapon():
+###### Activation Functions ######
+
+func activate_gnome_weapon() -> void:
 	weaponState = WeaponState.GNOME
 	gnomeWeapon.visible = true
 	
-func activate_water_gun_weapon():
+func activate_water_gun_weapon() -> void:
 	weaponState = WeaponState.WATERGUN
 	# visible true
 
+###### Helpers ######
+func add_projectile(degree: float) -> void:
+	var instance = water_path.instantiate()
+	instance.transform = $CollisionShape2D.global_transform
+	instance.rotation_degrees = degree
+	owner.add_child(instance)
