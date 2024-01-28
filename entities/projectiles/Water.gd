@@ -9,5 +9,6 @@ func _physics_process(delta):
 	position += transform.x * speed * delta
 
 func _on_area_entered(area):
-	area.take_damage()
+	if (area.is_in_group("Enemies")):
+		area.take_damage()
 	
