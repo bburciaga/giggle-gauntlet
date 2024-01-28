@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 enum WeaponState {
 	INACTIVE,
+  WATERGUN,
 	GNOME
 }
 
 @onready var anim = get_node("AnimatedSprite2D")
 @onready var gnomeWeapon = get_node("GnomeWeapon")
+@onready var watergunWeapon = get_node("WaterGunWeapon")
 const water_path = preload("res://entities/projectiles/Water.tscn")
 
 var SPEED = 300
@@ -34,7 +36,7 @@ func _on_gnome_hit_area_entered(area):
 		area.take_damage()
 	
 # Input Functions
-	
+
 func move(direction):
 	velocity = direction * SPEED
 	
@@ -60,29 +62,30 @@ func melee (direction):
 		gnomeWeapon.visible = true
 	
 func shoot():
-	if Input.is_action_just_pressed("arrow_right"):
-		var instance = water_path.instantiate()
-		instance.transform = $CollisionShape2D.global_transform
-		instance.rotation = 0
-		owner.add_child(instance)
-	
-	if Input.is_action_just_pressed("arrow_left"):
-		var instance = water_path.instantiate()
-		instance.transform = $CollisionShape2D.global_transform
-		instance.rotation_degrees = 180.0
-		owner.add_child(instance)
+	if WeaponState.WATERGUN == weaponState:
+		if Input.is_action_just_pressed("arrow_right"):
+			var instance = water_path.instantiate()
+			instance.transform = $CollisionShape2D.global_transform
+			instance.rotation = 0
+			owner.add_child(instance)
 		
-	if Input.is_action_just_pressed("arrow_up"):
-		var instance = water_path.instantiate()
-		instance.transform = $CollisionShape2D.global_transform
-		instance.rotation_degrees = 270.0
-		owner.add_child(instance)
-		
-	if Input.is_action_just_pressed("arrow_down"):
-		var instance = water_path.instantiate()
-		instance.transform = $CollisionShape2D.global_transform
-		instance.rotation_degrees = 90.0
-		owner.add_child(instance)
+		if Input.is_action_just_pressed("arrow_left"):
+			var instance = water_path.instantiate()
+			instance.transform = $CollisionShape2D.global_transform
+			instance.rotation_degrees = 180.0
+			owner.add_child(instance)
+			
+		if Input.is_action_just_pressed("arrow_up"):
+			var instance = water_path.instantiate()
+			instance.transform = $CollisionShape2D.global_transform
+			instance.rotation_degrees = 270.0
+			owner.add_child(instance)
+			
+		if Input.is_action_just_pressed("arrow_down"):
+			var instance = water_path.instantiate()
+			instance.transform = $CollisionShape2D.global_transform
+			instance.rotation_degrees = 90.0
+			owner.add_child(instance)
 		
 # Activation Functions
 
@@ -90,3 +93,7 @@ func activate_gnome_weapon():
 	weaponState = WeaponState.GNOME
 	gnomeWeapon.visible = true
 	
+func activate_water_gun_weapon():
+	weaponState = WeaponState.WATERGUN
+	# visible true
+
