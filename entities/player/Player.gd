@@ -8,12 +8,15 @@ enum WeaponState {
 @onready var anim = get_node("AnimatedSprite2D")
 @onready var gnomeWeapon = get_node("GnomeWeapon")
 const water_path = preload("res://entities/projectiles/Water.tscn")
+const banana_path = preload("res://entities/projectiles/Banana.tscn")
 
 var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
 var enemy
 var weaponState = WeaponState.INACTIVE
 var health = 6
+var bananaCooldown: float = 1.0
+var canDropBanana: bool = true
 
 func _ready() -> void:
 	gnomeWeapon.position = INITIAL_WEAPON_POSITION
@@ -47,14 +50,17 @@ func move(direction):
 
 func melee (direction):
 	if Input.is_action_pressed("ui_accept"):
-		if (weaponState == WeaponState.GNOME):
-			if(direction.x < 0):
-				gnomeWeapon.rotation_degrees = -45.0
-				gnomeWeapon.position = Vector2(-15, -5)
-			else:
-				gnomeWeapon.rotation_degrees = 45.0
-				gnomeWeapon.position = Vector2(15, -5)
-			gnomeWeapon.visible = true
+		if canDropBanana:
+			drop_banana()
+			start_cooldown()
+		#if (weaponState == WeaponState.GNOME):
+			#if(direction.x < 0):
+				#gnomeWeapon.rotation_degrees = -45.0
+				#gnomeWeapon.position = Vector2(-15, -5)
+			#else:
+				#gnomeWeapon.rotation_degrees = 45.0
+				#gnomeWeapon.position = Vector2(15, -5)
+			#gnomeWeapon.visible = true
 	else:
 		gnomeWeapon.position = INITIAL_WEAPON_POSITION
 		gnomeWeapon.visible = true
@@ -83,10 +89,21 @@ func shoot():
 		instance.transform = $CollisionShape2D.global_transform
 		instance.rotation_degrees = 90.0
 		owner.add_child(instance)
-		
+
+func drop_banana():
+	var banana_instance = banana_path.instantiate()
+	banana_instance.position = position
+	get_parent().add_child(banana_instance)
+
+func start_cooldown():
+	canDropBanana = false
+	$CooldownTimer.start()
+
+func _on_cooldown_timer_timeout():
+	canDropBanana = true
+	
 # Activation Functions
 
 func activate_gnome_weapon():
 	weaponState = WeaponState.GNOME
 	gnomeWeapon.visible = true
-	
