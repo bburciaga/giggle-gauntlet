@@ -5,5 +5,11 @@ func _ready():
 	
 func _on_area_entered(area):
 	if (area.is_in_group("Enemies")):
+		$SlipSound.play()
+		$Timer.start()
+		$".".position = Vector2(2000, 2000)
 		area.get_rotated()
-		queue_free()
+		
+		
+func _on_timer_timeout():
+	queue_free()

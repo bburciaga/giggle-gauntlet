@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://tu5yapuuup4a"]
+[gd_scene load_steps=10 format=3 uid="uid://tu5yapuuup4a"]
 
 [ext_resource type="Texture2D" uid="uid://dw0ys3ru3auy8" path="res://entities/assets/sprites/collectibles/Banana.png" id="1_bt3vw"]
 [ext_resource type="Script" path="res://entities/projectiles/Banana.gd" id="1_exctg"]
+[ext_resource type="AudioStream" uid="uid://bs4jblidy78lf" path="res://entities/assets/sounds/laugh_track.mp3" id="3_m46f6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3rxry"]
 atlas = ExtResource("1_bt3vw")
@@ -59,4 +60,11 @@ frame_progress = 0.677087
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rvabd")
 
+[node name="SlipSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m46f6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

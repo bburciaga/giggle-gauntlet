@@ -18,7 +18,6 @@ var INITIAL_WEAPON_POSITION = Vector2(915, -5)
 var enemy
 var weaponState: WeaponState = WeaponState.INACTIVE
 var health = 6
-var bananaCooldown: float = 1.0
 var canDropBanana: bool = true
 
 func _ready() -> void:
@@ -57,10 +56,10 @@ func melee (direction):
 			WeaponState.GNOME:
 				if(direction.x < 0):
 					gnomeWeapon.rotation_degrees = -45.0
-					gnomeWeapon.position = Vector2(-15, -5)
+					gnomeWeapon.position = Vector2(-19, -10)
 				else:
 					gnomeWeapon.rotation_degrees = 45.0
-					gnomeWeapon.position = Vector2(15, -5)
+					gnomeWeapon.position = Vector2(19, -10)
 				gnomeWeapon.visible = true
 			WeaponState.BANANA:
 				if canDropBanana:

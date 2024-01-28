@@ -5,7 +5,6 @@ extends CharacterBody2D
 var player
 var SPEED = 150
 var health = 3
-var rotationCooldown: float = 3.0
 
 func _physics_process(delta):
 	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
