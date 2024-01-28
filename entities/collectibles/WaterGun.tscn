@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca7w6fwdb6b3y"]
+[gd_scene load_steps=5 format=3 uid="uid://c1pirnb80jep3"]
 
 [ext_resource type="Script" path="res://entities/collectibles/WaterGun.gd" id="1_cjiwj"]
 [ext_resource type="Texture2D" uid="uid://dscac2mhaibjy" path="res://entities/assets/sprites/collectibles/water_gun.png" id="1_ipq67"]

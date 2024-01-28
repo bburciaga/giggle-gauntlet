@@ -16,7 +16,7 @@ const banana_path = preload("res://entities/projectiles/Banana.tscn")
 var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
 var enemy
-var weaponState: WeaponState = WeaponState.BANANA
+var weaponState: WeaponState = WeaponState.INACTIVE
 var health = 6
 var bananaCooldown: float = 1.0
 var canDropBanana: bool = true
@@ -101,6 +101,10 @@ func activate_gnome_weapon() -> void:
 	
 func activate_water_gun_weapon() -> void:
 	weaponState = WeaponState.WATERGUN
+	# visible true
+
+func activate_banana_weapon() -> void:
+	weaponState = WeaponState.BANANA
 	# visible true
 
 ###### Helpers ######
