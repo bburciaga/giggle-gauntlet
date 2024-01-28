@@ -8,7 +8,7 @@ var health = 3
 var rotationCooldown: float = 3.0
 
 func _physics_process(delta):
-	if (anim.rotation_degrees == -90.0):  
+	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
 		return
 		
 	player = get_node("../Player")
@@ -37,7 +37,7 @@ func take_damage():
 		self.queue_free()
 
 func get_rotated():
-	anim.rotation_degrees = -90.0
+	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
 	take_damage()
 	$RotationTimer.start()
 	
