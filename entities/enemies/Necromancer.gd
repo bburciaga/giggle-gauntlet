@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var anim = get_node("AnimatedSprite2D")
 
 var player
-var SPEED = 300
+var SPEED = 150
 var chase = false
 var health = 3
 	
@@ -28,7 +28,7 @@ func take_damage():
 	if anim.animation != "Hurt":
 		health -= 1
 		
-	if health > 0:
+	if health >= 1:
 		anim.play("Hurt")
 		await anim.animation_finished
 		anim.animation = "Idle"

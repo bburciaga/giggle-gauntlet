@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgy627vpf0i1m"]
+[gd_scene load_steps=7 format=3 uid="uid://chn8cdp6uokws"]
 
 [ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="1_f056i"]
 [ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_wum8g"]
 [ext_resource type="PackedScene" uid="uid://bxwov4sfh600f" path="res://entities/enemies/Necromancer.tscn" id="2_6dfya"]
+[ext_resource type="PackedScene" uid="uid://bx5y06krqdgry" path="res://entities/collectibles/Gnome.tscn" id="4_ha0nx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tanib"]
 size = Vector2(1171, 15)
@@ -34,5 +35,8 @@ shape = SubResource("RectangleShape2D_sdfqw")
 position = Vector2(1156, -0.5)
 shape = SubResource("RectangleShape2D_sdfqw")
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_6dfya")]
+[node name="Enemy" parent="." instance=ExtResource("2_6dfya")]
 position = Vector2(678, 304)
+
+[node name="Gnome" parent="." instance=ExtResource("4_ha0nx")]
+position = Vector2(288, 213)

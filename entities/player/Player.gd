@@ -6,6 +6,7 @@ enum WeaponState {
 }
 
 @onready var anim = get_node("AnimatedSprite2D")
+@onready var gnomeWeapon = get_node("GnomeWeapon")
 
 var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
@@ -16,6 +17,7 @@ func _ready():
 	gnomeWeapon.position = INITIAL_WEAPON_POSITION
 	
 func _physics_process(delta):
+	enemy = get_node("../Enemy")
 	var direction = Input.get_vector(
 		"move_left",
 		"move_right",
