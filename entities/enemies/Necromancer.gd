@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 var player
 var SPEED = 150
-var chase = false
 var health = 3
 	
 func _physics_process(delta):
@@ -19,10 +18,6 @@ func _physics_process(delta):
 	else:
 		anim.play("Idle")
 	move_and_slide()
-	
-func _on_player_detection_body_entered(body):
-	if body.name == "Player":
-		chase = true;
 		
 func take_damage():
 	if anim.animation != "Hurt":

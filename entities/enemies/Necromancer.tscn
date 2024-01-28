@@ -3,9 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://w34n4o0hbsr2" path="res://entities/assets/sprites/enemies/Necromancer.png" id="1_e3vfi"]
 [ext_resource type="Script" path="res://entities/enemies/Necromancer.gd" id="1_qagpp"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_be2om"]
-height = 50.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5kud"]
 atlas = ExtResource("1_e3vfi")
 region = Rect2(0, 256, 160, 128)
@@ -356,15 +353,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j8q2c"]
-radius = 9.21954
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br5g0"]
+height = 45.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xd1wn"]
+height = 44.0
 
 [node name="CharacterBody2D2" type="CharacterBody2D"]
 script = ExtResource("1_qagpp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
-shape = SubResource("CapsuleShape2D_be2om")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -20)
@@ -374,7 +370,12 @@ animation = &"Death"
 [node name="PlayerDetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
-shape = SubResource("CircleShape2D_j8q2c")
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_br5g0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_xd1wn")
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
