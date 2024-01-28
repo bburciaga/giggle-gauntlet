@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://chn8cdp6uokws"]
 
-[ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="1_f056i"]
-[ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_wum8g"]
-[ext_resource type="PackedScene" uid="uid://bxwov4sfh600f" path="res://entities/enemies/Necromancer.tscn" id="2_6dfya"]
-[ext_resource type="PackedScene" uid="uid://bx5y06krqdgry" path="res://entities/collectibles/Gnome.tscn" id="4_ha0nx"]
-[ext_resource type="Texture2D" uid="uid://d4lysg3neevm5" path="res://entities/assets/sprites/player/clownfaces.png" id="5_fjv27"]
+[ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_hg5t3"]
+[ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="2_used6"]
+[ext_resource type="PackedScene" uid="uid://bxwov4sfh600f" path="res://entities/enemies/Necromancer.tscn" id="3_6uynd"]
+[ext_resource type="PackedScene" uid="uid://bx5y06krqdgry" path="res://entities/collectibles/Gnome.tscn" id="4_5obuh"]
+[ext_resource type="Texture2D" uid="uid://d4lysg3neevm5" path="res://entities/assets/sprites/player/clownfaces.png" id="5_hvx26"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tanib"]
 size = Vector2(1171, 15)
@@ -13,27 +13,27 @@ size = Vector2(1171, 15)
 size = Vector2(14, 663)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yjcie"]
-atlas = ExtResource("5_fjv27")
+atlas = ExtResource("5_hvx26")
 region = Rect2(0, 816, 170, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6mip"]
-atlas = ExtResource("5_fjv27")
+atlas = ExtResource("5_hvx26")
 region = Rect2(0, 612, 168, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fuw0g"]
-atlas = ExtResource("5_fjv27")
+atlas = ExtResource("5_hvx26")
 region = Rect2(0, 408, 170, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1n2p"]
-atlas = ExtResource("5_fjv27")
+atlas = ExtResource("5_hvx26")
 region = Rect2(0, 204, 170, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ustda"]
-atlas = ExtResource("5_fjv27")
+atlas = ExtResource("5_hvx26")
 region = Rect2(340, 0, 170, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6vfn"]
-atlas = ExtResource("5_fjv27")
+atlas = ExtResource("5_hvx26")
 region = Rect2(13, 13, 155, 175)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6kbte"]
@@ -88,9 +88,9 @@ animations = [{
 }]
 
 [node name="Gauntlet" type="Node2D"]
-script = ExtResource("1_wum8g")
+script = ExtResource("1_hg5t3")
 
-[node name="Player" parent="." instance=ExtResource("1_f056i")]
+[node name="Player" parent="." instance=ExtResource("2_used6")]
 position = Vector2(489, 298)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -111,10 +111,10 @@ shape = SubResource("RectangleShape2D_sdfqw")
 position = Vector2(1156, -0.5)
 shape = SubResource("RectangleShape2D_sdfqw")
 
-[node name="Enemy" parent="." instance=ExtResource("2_6dfya")]
+[node name="Enemy" parent="." instance=ExtResource("3_6uynd")]
 position = Vector2(678, 304)
 
-[node name="Gnome" parent="." instance=ExtResource("4_ha0nx")]
+[node name="Gnome" parent="." instance=ExtResource("4_5obuh")]
 position = Vector2(288, 213)
 
 [node name="UI" type="CanvasLayer" parent="."]
