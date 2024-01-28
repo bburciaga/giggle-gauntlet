@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bxwov4sfh600f"]
+[gd_scene load_steps=53 format=3 uid="uid://bxwov4sfh600f"]
 
 [ext_resource type="Texture2D" uid="uid://w34n4o0hbsr2" path="res://entities/assets/sprites/enemies/Necromancer.png" id="1_e3vfi"]
 [ext_resource type="Script" path="res://entities/enemies/Necromancer.gd" id="1_qagpp"]
@@ -273,7 +273,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yngeb")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 5.0
 }, {
@@ -293,7 +293,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rqpcv")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt",
 "speed": 5.0
 }, {
@@ -359,6 +359,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_j8q2c"]
 radius = 154.434
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iar3v"]
+size = Vector2(22, 52)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_qagpp")
 
@@ -369,12 +372,20 @@ shape = SubResource("CapsuleShape2D_be2om")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -20)
 sprite_frames = SubResource("SpriteFrames_hpofi")
-animation = &"Idle"
+animation = &"Hurt"
 
 [node name="PlayerDetection" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_j8q2c")
 
+[node name="EnemyDeath" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDeath"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_iar3v")
+
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_entered" from="EnemyDeath" to="." method="_on_enemy_death_body_entered"]
