@@ -170,6 +170,7 @@ animation = &"Idle"
 zoom = Vector2(1.6, 1.6)
 
 [node name="GnomeWeapon" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(17.5234, -4.52342)
 rotation = 0.785398
 scale = Vector2(0.35329, 0.933827)
