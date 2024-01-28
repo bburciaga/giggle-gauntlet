@@ -26,7 +26,16 @@ func _physics_process(delta):
 		"move_up",
 		"move_down"
 	)
+	move(direction)
+	melee(direction)
+	shoot()
 
+func _on_gnome_hit_area_entered(area):
+	enemy.take_damage()
+	
+# Input Functions
+	
+func move(direction):
 	velocity = direction * SPEED
 	
 	if direction.length() > 0:
@@ -35,7 +44,8 @@ func _physics_process(delta):
 	else:
 		anim.play("Idle")
 	move_and_slide()
-	
+
+func melee (direction):
 	if Input.is_action_pressed("ui_accept"):
 		if (weaponState == WeaponState.GNOME):
 			if(direction.x < 0):
@@ -49,17 +59,8 @@ func _physics_process(delta):
 		gnomeWeapon.position = INITIAL_WEAPON_POSITION
 		gnomeWeapon.visible = true
 	
-	shoot()
-
-func _on_gnome_hit_area_entered(area):
-	enemy.take_damage()
-	
-func activate_gnome_weapon():
-	weaponState = WeaponState.GNOME
-	gnomeWeapon.visible = true
-	
 func shoot():
-	if Input.is_action_just_pressed("arrow_right"): 
+	if Input.is_action_just_pressed("arrow_right"):
 		var instance = water_path.instantiate()
 		instance.transform = $CollisionShape2D.global_transform
 		instance.rotation = 0
@@ -83,3 +84,9 @@ func shoot():
 		instance.rotation_degrees = 90.0
 		owner.add_child(instance)
 		
+# Activation Functions
+
+func activate_gnome_weapon():
+	weaponState = WeaponState.GNOME
+	gnomeWeapon.visible = true
+	
