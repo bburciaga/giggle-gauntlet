@@ -5,4 +5,4 @@ func _ready():
 	
 func _on_area_entered(area):
 	if (area.is_in_group("Enemies")):
-		area.take_damage()
+		area.get_rotated()
