@@ -5,8 +5,12 @@ extends CharacterBody2D
 var player
 var SPEED = 150
 var health = 3
-	
+var rotationCooldown: float = 3.0
+
 func _physics_process(delta):
+	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
+		return
+		
 	player = get_node("../Player")
 	var direction = (player.global_position - self.global_position).normalized()
 	velocity = direction * SPEED
@@ -32,8 +36,19 @@ func take_damage():
 		await anim.animation_finished
 		self.queue_free()
 
+func get_rotated():
+	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
+	take_damage()
+	$RotationTimer.start()
+	
+func _on_rotation_timer_timeout():
+	anim.rotation_degrees = 0.0
+	
 #func _on_enemy_death_body_entered(body):
 	#if body.name == "Player":
 		#anim.play("Death")
 		#await anim.animation_finished
 		#self.queue_free()
+
+
+

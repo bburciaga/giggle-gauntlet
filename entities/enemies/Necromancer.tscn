@@ -379,5 +379,8 @@ shape = SubResource("CapsuleShape2D_br5g0")
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_xd1wn")
 
+[node name="RotationTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="timeout" from="RotationTimer" to="." method="_on_rotation_timer_timeout"]
