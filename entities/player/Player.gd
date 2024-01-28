@@ -14,7 +14,7 @@ const water_path: Resource = preload("res://entities/projectiles/Water.tscn")
 var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
 var enemy
-var weaponState = WeaponState.INACTIVE
+var weaponState: WeaponState = WeaponState.INACTIVE
 var health = 6
 
 func _ready() -> void:
@@ -84,7 +84,7 @@ func activate_water_gun_weapon() -> void:
 
 ###### Helpers ######
 func add_projectile(degree: float) -> void:
-	var instance = water_path.instantiate()
+	var instance: Water = water_path.instantiate()
 	instance.transform = $CollisionShape2D.global_transform
 	instance.rotation_degrees = degree
 	owner.add_child(instance)

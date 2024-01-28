@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Water
+
 var speed: float = 125.0
 
 @export var rotation_speed = 1.5
@@ -11,4 +13,3 @@ func _physics_process(delta):
 func _on_area_entered(area):
 	if (area.is_in_group("Enemies")):
 		area.take_damage()
-	
