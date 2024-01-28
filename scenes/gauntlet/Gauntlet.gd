@@ -20,3 +20,9 @@ func _process(delta):
 			$UI/Health.play("5")
 		6:
 			$UI/Health.play("6")
+
+
+#func _on_ready():		
+	#$Enemy.add_to_group("Enemies")
+	#$Enemy2.add_to_group("Enemies")
+	

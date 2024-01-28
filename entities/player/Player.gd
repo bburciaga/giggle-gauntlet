@@ -19,7 +19,6 @@ func _ready() -> void:
 	gnomeWeapon.position = INITIAL_WEAPON_POSITION
 	
 func _physics_process(delta):
-	enemy = get_node("../Enemy")
 	var direction = Input.get_vector(
 		"move_left",
 		"move_right",
@@ -31,7 +30,8 @@ func _physics_process(delta):
 	shoot()
 
 func _on_gnome_hit_area_entered(area):
-	enemy.take_damage()
+	if (area.is_in_group("Enemies")):
+		area.take_damage()
 	
 # Input Functions
 	
