@@ -1,10 +1,23 @@
 extends CharacterBody2D
 
+enum WeaponState {
+	INACTIVE,
+	GNOME
+}
+
 @onready var anim = get_node("AnimatedSprite2D")
+@onready var gnomeWeapon = get_node("GnomeWeapon")
 
 var SPEED = 300
+var INITIAL_WEAPON_POSITION = Vector2(915, -5)
+var enemy
+var weaponState = WeaponState.INACTIVE
 
+func _ready():
+	gnomeWeapon.position = INITIAL_WEAPON_POSITION
+	
 func _physics_process(delta):
+	enemy = get_node("../Enemy")
 	var direction = Input.get_vector(
 		"move_left",
 		"move_right",
@@ -18,5 +31,24 @@ func _physics_process(delta):
 		anim.flip_h = direction.x < 0
 	else:
 		anim.play("Idle")
-		
 	move_and_slide()
+	
+	if Input.is_action_pressed("ui_accept"):
+		if (weaponState == WeaponState.GNOME):
+			if(direction.x < 0):
+				gnomeWeapon.rotation_degrees = -45.0
+				gnomeWeapon.position = Vector2(-15, -5)
+			else:
+				gnomeWeapon.rotation_degrees = 45.0
+				gnomeWeapon.position = Vector2(15, -5)
+			gnomeWeapon.visible = true
+	else:
+		gnomeWeapon.position = INITIAL_WEAPON_POSITION
+		gnomeWeapon.visible = true
+
+func _on_gnome_hit_area_entered(area):
+	enemy.take_damage()
+	
+func activate_gnome_weapon():
+	weaponState = WeaponState.GNOME
+	gnomeWeapon.visible = true
