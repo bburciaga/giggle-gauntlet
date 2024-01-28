@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca7w6fwdb6b3y"]
+
+[ext_resource type="Script" path="res://entities/collectibles/WaterGun.gd" id="1_cjiwj"]
+[ext_resource type="Texture2D" uid="uid://dscac2mhaibjy" path="res://entities/assets/sprites/collectibles/water_gun.png" id="1_ipq67"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmcty"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oa4jn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ipq67")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}]
+
+[node name="WaterGun" type="Area2D"]
+script = ExtResource("1_cjiwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_gmcty")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.76837e-07, -7.15256e-07)
+scale = Vector2(0.025375, 0.025375)
+sprite_frames = SubResource("SpriteFrames_oa4jn")
+animation = &"hover"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
