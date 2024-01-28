@@ -47,6 +47,8 @@ func _physics_process(delta):
 	else:
 		gnomeWeapon.position = INITIAL_WEAPON_POSITION
 		gnomeWeapon.visible = true
+	
+	if Input.is_action_just_pressed("arrow_right"): shoot()
 
 func _on_gnome_hit_area_entered(area):
 	enemy.take_damage()
@@ -59,6 +61,7 @@ func shoot():
 	print("BANG")
 	var instance = water_path.instantiate()
 	owner.add_child(instance)
+	instance.rotation_degrees = 45
 	instance.transform = $CollisionShape2D.global_transform
 	
 
