@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://btc3chabdpnlc" path="res://entities/assets/sprites/player/Full/Generic_Man_Idle.png" id="1_vk2q6"]
 [ext_resource type="Texture2D" uid="uid://cp5aloci2bgox" path="res://entities/assets/sprites/player/Full/Generic_Man_Jump.png" id="3_4o4i5"]
 [ext_resource type="Texture2D" uid="uid://sl1fcetbeoxw" path="res://entities/assets/sprites/player/Full/Generic_Man_Run.png" id="4_rg3f8"]
-[ext_resource type="Texture2D" uid="uid://bpja50jp5jp31" path="res://entities/assets/sprites/collectibles/all_gnomes.png" id="5_mmtla"]
+[ext_resource type="Texture2D" uid="uid://cukguo6pci0mw" path="res://entities/assets/sprites/collectibles/gnome_sword.png" id="5_kla0y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a22av"]
 
@@ -138,15 +138,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3istr"]
-atlas = ExtResource("5_mmtla")
-region = Rect2(0, 32, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0yr1"]
+atlas = ExtResource("5_kla0y")
+region = Rect2(0, 0, 40, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_404r7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3istr")
+"texture": SubResource("AtlasTexture_d0yr1")
 }],
 "loop": true,
 "name": &"default",
@@ -154,7 +154,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dshac"]
-height = 32.4332
+height = 67.6811
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1ufj7")
@@ -170,14 +170,15 @@ animation = &"Idle"
 zoom = Vector2(1.6, 1.6)
 
 [node name="GnomeWeapon" type="AnimatedSprite2D" parent="."]
-position = Vector2(21.6109, -11.6109)
+position = Vector2(21, -8)
 rotation = 0.785398
-scale = Vector2(0.346612, 1.36673)
+scale = Vector2(0.346612, 0.584285)
 sprite_frames = SubResource("SpriteFrames_404r7")
 
 [node name="GnomeHit" type="Area2D" parent="GnomeWeapon"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GnomeWeapon/GnomeHit"]
+position = Vector2(-1.90735e-06, -1.90735e-06)
 shape = SubResource("CapsuleShape2D_dshac")
 
 [node name="CooldownTimer" type="Timer" parent="."]

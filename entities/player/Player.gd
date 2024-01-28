@@ -56,10 +56,10 @@ func melee (direction):
 			WeaponState.GNOME:
 				if(direction.x < 0):
 					gnomeWeapon.rotation_degrees = -45.0
-					gnomeWeapon.position = Vector2(-15, -5)
+					gnomeWeapon.position = Vector2(-19, -10)
 				else:
 					gnomeWeapon.rotation_degrees = 45.0
-					gnomeWeapon.position = Vector2(15, -5)
+					gnomeWeapon.position = Vector2(19, -10)
 				gnomeWeapon.visible = true
 			WeaponState.BANANA:
 				if canDropBanana:
