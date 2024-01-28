@@ -12,6 +12,7 @@ var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
 var enemy
 var weaponState = WeaponState.INACTIVE
+var health = 6
 
 func _ready():
 	gnomeWeapon.position = INITIAL_WEAPON_POSITION

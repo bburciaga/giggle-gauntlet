@@ -1,15 +1,91 @@
-[gd_scene load_steps=7 format=3 uid="uid://chn8cdp6uokws"]
+[gd_scene load_steps=15 format=3 uid="uid://chn8cdp6uokws"]
 
 [ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="1_f056i"]
 [ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_wum8g"]
 [ext_resource type="PackedScene" uid="uid://bxwov4sfh600f" path="res://entities/enemies/Necromancer.tscn" id="2_6dfya"]
 [ext_resource type="PackedScene" uid="uid://bx5y06krqdgry" path="res://entities/collectibles/Gnome.tscn" id="4_ha0nx"]
+[ext_resource type="Texture2D" uid="uid://d4lysg3neevm5" path="res://entities/assets/sprites/player/clownfaces.png" id="5_fjv27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tanib"]
 size = Vector2(1171, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdfqw"]
 size = Vector2(14, 663)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjcie"]
+atlas = ExtResource("5_fjv27")
+region = Rect2(0, 816, 170, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6mip"]
+atlas = ExtResource("5_fjv27")
+region = Rect2(0, 612, 168, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuw0g"]
+atlas = ExtResource("5_fjv27")
+region = Rect2(0, 408, 170, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1n2p"]
+atlas = ExtResource("5_fjv27")
+region = Rect2(0, 204, 170, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ustda"]
+atlas = ExtResource("5_fjv27")
+region = Rect2(340, 0, 170, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6vfn"]
+atlas = ExtResource("5_fjv27")
+region = Rect2(13, 13, 155, 175)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kbte"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjcie")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6mip")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuw0g")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1n2p")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ustda")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6vfn")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
+}]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_wum8g")
@@ -40,3 +116,11 @@ position = Vector2(678, 304)
 
 [node name="Gnome" parent="." instance=ExtResource("4_ha0nx")]
 position = Vector2(288, 213)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Health" type="AnimatedSprite2D" parent="UI"]
+sprite_frames = SubResource("SpriteFrames_6kbte")
+animation = &"6"
+frame_progress = 0.71383
+offset = Vector2(100, 100)
