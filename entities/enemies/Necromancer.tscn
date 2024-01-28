@@ -1,7 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://bxwov4sfh600f"]
+[gd_scene load_steps=53 format=3 uid="uid://bxwov4sfh600f"]
 
 [ext_resource type="Texture2D" uid="uid://w34n4o0hbsr2" path="res://entities/assets/sprites/enemies/Necromancer.png" id="1_e3vfi"]
 [ext_resource type="Script" path="res://entities/enemies/Necromancer.gd" id="1_qagpp"]
+[ext_resource type="Script" path="res://entities/enemies/PlayerDetection.gd" id="3_q7t8h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5kud"]
 atlas = ExtResource("1_e3vfi")
@@ -367,7 +368,8 @@ position = Vector2(-1, -20)
 sprite_frames = SubResource("SpriteFrames_hpofi")
 animation = &"Death"
 
-[node name="PlayerDetection" type="Area2D" parent="."]
+[node name="PlayerDetection" type="Area2D" parent="." groups=["Enemies"]]
+script = ExtResource("3_q7t8h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 position = Vector2(0, 8)
