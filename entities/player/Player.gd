@@ -48,7 +48,7 @@ func _physics_process(delta):
 		gnomeWeapon.position = INITIAL_WEAPON_POSITION
 		gnomeWeapon.visible = true
 	
-	if Input.is_action_just_pressed("arrow_right"): shoot()
+	shoot()
 
 func _on_gnome_hit_area_entered(area):
 	enemy.take_damage()
@@ -58,14 +58,27 @@ func activate_gnome_weapon():
 	gnomeWeapon.visible = true
 	
 func shoot():
-	print("BANG")
-	var instance = water_path.instantiate()
-	owner.add_child(instance)
-	instance.rotation_degrees = 45
-	instance.transform = $CollisionShape2D.global_transform
+	if Input.is_action_just_pressed("arrow_right"): 
+		var instance = water_path.instantiate()
+		instance.transform = $CollisionShape2D.global_transform
+		instance.rotation = 0
+		owner.add_child(instance)
 	
-
-#func _physics_process(delta):
-	#move()
-	
-	#if Input.is_action_just_pressed("arrow_right"): shoot()
+	if Input.is_action_just_pressed("arrow_left"):
+		var instance = water_path.instantiate()
+		instance.transform = $CollisionShape2D.global_transform
+		instance.rotation_degrees = 180.0
+		owner.add_child(instance)
+		
+	if Input.is_action_just_pressed("arrow_up"):
+		var instance = water_path.instantiate()
+		instance.transform = $CollisionShape2D.global_transform
+		instance.rotation_degrees = 270.0
+		owner.add_child(instance)
+		
+	if Input.is_action_just_pressed("arrow_down"):
+		var instance = water_path.instantiate()
+		instance.transform = $CollisionShape2D.global_transform
+		instance.rotation_degrees = 90.0
+		owner.add_child(instance)
+		
