@@ -3,7 +3,8 @@ extends CharacterBody2D
 enum WeaponState {
 	INACTIVE,
   WATERGUN,
-	GNOME
+	GNOME,
+	BANANA
 }
 
 @onready var anim: Node = get_node("AnimatedSprite2D")
@@ -15,7 +16,7 @@ const banana_path = preload("res://entities/projectiles/Banana.tscn")
 var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
 var enemy
-var weaponState: WeaponState = WeaponState.INACTIVE
+var weaponState: WeaponState = WeaponState.BANANA
 var health = 6
 var bananaCooldown: float = 1.0
 var canDropBanana: bool = true
@@ -52,17 +53,19 @@ func move(direction) -> void:
 
 func melee (direction):
 	if Input.is_action_pressed("ui_accept"):
-		if canDropBanana:
-			drop_banana()
-			start_cooldown()
-		#if (weaponState == WeaponState.GNOME):
-			#if(direction.x < 0):
-				#gnomeWeapon.rotation_degrees = -45.0
-				#gnomeWeapon.position = Vector2(-15, -5)
-			#else:
-				#gnomeWeapon.rotation_degrees = 45.0
-				#gnomeWeapon.position = Vector2(15, -5)
-			#gnomeWeapon.visible = true
+		match weaponState:
+			WeaponState.GNOME:
+				if(direction.x < 0):
+					gnomeWeapon.rotation_degrees = -45.0
+					gnomeWeapon.position = Vector2(-15, -5)
+				else:
+					gnomeWeapon.rotation_degrees = 45.0
+					gnomeWeapon.position = Vector2(15, -5)
+				gnomeWeapon.visible = true
+			WeaponState.BANANA:
+				if canDropBanana:
+					drop_banana()
+					start_cooldown()
 	else:
 		gnomeWeapon.position = INITIAL_WEAPON_POSITION
 		gnomeWeapon.visible = true
