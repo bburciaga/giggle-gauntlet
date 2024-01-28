@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://occdpjojraht"]
+
+[ext_resource type="Texture2D" uid="uid://b4crfsdk8j3g6" path="res://entities/assets/sprites/projectiles/Water__01.png" id="1_7i62r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ermiq"]
+
+[node name="Water" type="Area2D"]
+
+[node name="Water01" type="Sprite2D" parent="."]
+scale = Vector2(0.186667, 0.186667)
+texture = ExtResource("1_7i62r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_ermiq")
