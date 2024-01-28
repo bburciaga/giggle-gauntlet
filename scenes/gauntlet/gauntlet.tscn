@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgy627vpf0i1m"]
+[gd_scene load_steps=6 format=3 uid="uid://chn8cdp6uokws"]
 
 [ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="1_f056i"]
 [ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_wum8g"]
@@ -34,5 +34,5 @@ shape = SubResource("RectangleShape2D_sdfqw")
 position = Vector2(1156, -0.5)
 shape = SubResource("RectangleShape2D_sdfqw")
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_6dfya")]
+[node name="Necromancer" parent="." instance=ExtResource("2_6dfya")]
 position = Vector2(678, 304)
