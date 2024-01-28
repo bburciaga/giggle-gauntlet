@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://don8fgj03n00v"]
+[gd_scene load_steps=15 format=3 uid="uid://jatpf4e6f5v8"]
 
 [ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_hg5t3"]
 [ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="2_used6"]
@@ -113,6 +113,15 @@ shape = SubResource("RectangleShape2D_sdfqw")
 
 [node name="Enemy" parent="." instance=ExtResource("3_6uynd")]
 position = Vector2(678, 304)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_6uynd")]
+position = Vector2(448, 444)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_6uynd")]
+position = Vector2(309, 339)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_6uynd")]
+position = Vector2(546, 116)
 
 [node name="Gnome" parent="." instance=ExtResource("4_5obuh")]
 position = Vector2(288, 213)

@@ -9,5 +9,5 @@ func _physics_process(delta):
 	position += transform.x * speed * delta
 
 func _on_area_entered(area):
-	get_node("../Enemy").take_damage()
-	pass # Replace with function body.
+	area.take_damage()
+	
