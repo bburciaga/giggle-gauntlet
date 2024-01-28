@@ -18,7 +18,6 @@ var INITIAL_WEAPON_POSITION = Vector2(915, -5)
 var enemy
 var weaponState: WeaponState = WeaponState.INACTIVE
 var health = 6
-var bananaCooldown: float = 1.0
 var canDropBanana: bool = true
 
 func _ready() -> void:
