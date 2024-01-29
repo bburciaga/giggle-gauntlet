@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dm168nvssdbg2"]
+[gd_scene load_steps=25 format=3 uid="uid://dm168nvssdbg2"]
 
 [ext_resource type="Texture2D" uid="uid://dw0ys3ru3auy8" path="res://entities/assets/sprites/collectibles/Banana.png" id="1_r81e0"]
 
@@ -17,6 +17,38 @@ region = Rect2(64, 160, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_80lho"]
 atlas = ExtResource("1_r81e0")
 region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojkjs"]
+atlas = ExtResource("1_r81e0")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a4xw"]
+atlas = ExtResource("1_r81e0")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2ebl"]
+atlas = ExtResource("1_r81e0")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7x1p"]
+atlas = ExtResource("1_r81e0")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddlkn"]
+atlas = ExtResource("1_r81e0")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5i5g"]
+atlas = ExtResource("1_r81e0")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ypgi"]
+atlas = ExtResource("1_r81e0")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdys2"]
+atlas = ExtResource("1_r81e0")
+region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucs6f"]
 atlas = ExtResource("1_r81e0")
@@ -71,6 +103,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ojkjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a4xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2ebl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7x1p")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddlkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5i5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ypgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdys2")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ucs6f")
 }, {
 "duration": 1.0,
@@ -117,8 +183,7 @@ height = 26.0
 position = Vector2(7, -7)
 scale = Vector2(1.4375, 1.4375)
 sprite_frames = SubResource("SpriteFrames_vv5eg")
-animation = &"attack"
-frame_progress = 0.0953475
+animation = &"death"
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 
