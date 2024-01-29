@@ -1,7 +1,8 @@
-[gd_scene load_steps=53 format=3 uid="uid://bxwov4sfh600f"]
+[gd_scene load_steps=54 format=3 uid="uid://bxwov4sfh600f"]
 
 [ext_resource type="Texture2D" uid="uid://w34n4o0hbsr2" path="res://entities/assets/sprites/enemies/Necromancer.png" id="1_e3vfi"]
 [ext_resource type="Script" path="res://entities/enemies/Necromancer.gd" id="1_qagpp"]
+[ext_resource type="PackedScene" uid="uid://cms2nvy3isnil" path="res://entities/projectiles/Wrench.tscn" id="2_yvrpi"]
 [ext_resource type="Script" path="res://entities/enemies/PlayerDetection.gd" id="3_q7t8h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5kud"]
@@ -361,7 +362,11 @@ height = 45.0
 height = 44.0
 
 [node name="Necromancer" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_qagpp")
+ammo = ExtResource("2_yvrpi")
+
+[node name="ProjectileTimer" type="Timer" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -20)
@@ -380,8 +385,12 @@ position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_xd1wn")
 
 [node name="RotationTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.4
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="timeout" from="RotationTimer" to="." method="_on_rotation_timer_timeout"]

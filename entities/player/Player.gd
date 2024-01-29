@@ -80,7 +80,6 @@ func shoot() -> void:
 			add_projectile(270.0)
 		if Input.is_action_just_pressed("arrow_down"):
 			add_projectile(90.0)
-			
 
 func drop_banana():
 	var banana_instance = banana_path.instantiate()
