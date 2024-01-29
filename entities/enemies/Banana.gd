@@ -6,17 +6,17 @@ extends CharacterBody2D
 var player
 var SPEED = 150
 var health = 3
-var is_attacking = false
-var attack_cooldown = 1.0  # Set the cooldown time for the attack
-var attack_timer = 0.0
 
 func _process(delta):
+	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
+		return
+		
 	player = get_node("../Player")
 	var direction = (player.global_position - self.global_position).normalized()
 	velocity = direction * SPEED
 
 	if direction.length() > 0:
-		if anim.animation != "Death" and anim.animation != "Hurt":
+		if anim.animation != "Death" and anim.animation != "Hurt" and anim.animation != "Attack":
 			anim.play("Run")
 		anim.flip_h = direction.x < 0
 		if anim.flip_h:
@@ -26,22 +26,30 @@ func _process(delta):
 	else:
 		anim.play("Idle")
 	
-
-	if is_attacking:
-		attack_timer += delta
-		if attack_timer >= attack_cooldown:
-			is_attacking = false
-			attack_timer = 0.0
-
-func _physics_process(delta):
 	move_and_slide()
 
-func attack():
-	if not is_attacking:
-		is_attacking = true
-		anim.play("Attack")
-
+func take_damage():
+	if anim.animation != "Hurt":
+		health -= 1
+		
+	if health >= 1:
+		anim.play("Hurt")
+		await anim.animation_finished
+		anim.animation = "Idle"
+	else:
+		anim.play("Death")
+		await anim.animation_finished
+		self.queue_free()
+		
 func _on_attack_area_area_entered(area):
 	if area.is_in_group("Player"):
-		attack()
+		anim.play("Attack")
+		
+func get_rotated():
+	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
+	take_damage()
+	$RotationTimer.start()
+	
+func _on_rotation_timer_timeout():
+	anim.rotation_degrees = 0.0
 

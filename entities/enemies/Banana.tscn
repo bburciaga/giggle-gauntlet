@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://dm168nvssdbg2"]
+[gd_scene load_steps=27 format=3 uid="uid://dm168nvssdbg2"]
 
 [ext_resource type="Script" path="res://entities/enemies/Banana.gd" id="1_oikax"]
 [ext_resource type="Texture2D" uid="uid://dw0ys3ru3auy8" path="res://entities/assets/sprites/collectibles/Banana.png" id="1_r81e0"]
+[ext_resource type="Script" path="res://entities/enemies/AttackArea.gd" id="3_5ohy6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hndd3"]
 atlas = ExtResource("1_r81e0")
@@ -115,7 +116,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x7x1p")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 5.0
 }, {
@@ -132,7 +133,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sdys2")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt",
 "speed": 5.0
 }, {
@@ -185,18 +186,23 @@ script = ExtResource("1_oikax")
 position = Vector2(7, -7)
 scale = Vector2(1.4375, 1.4375)
 sprite_frames = SubResource("SpriteFrames_vv5eg")
-animation = &"Idle"
+animation = &"Death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -9)
 shape = SubResource("CapsuleShape2D_v7uni")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
 position = Vector2(7, -7)
 scale = Vector2(1.4375, 1.4375)
+script = ExtResource("3_5ohy6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(6, 0)
 shape = SubResource("RectangleShape2D_xap24")
 
+[node name="RotationTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="timeout" from="RotationTimer" to="." method="_on_rotation_timer_timeout"]
