@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 const wrench_path = preload("res://entities/projectiles/Wrench.tscn")
 
-var SPEED = 25
+var SPEED = 15
 var health = 3
 
 
@@ -52,6 +52,7 @@ func take_damage() -> void:
 
 func look() -> void:
 	var direction = (player.global_position - self.global_position).normalized()
+	velocity = direction * SPEED
 	
 	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
 		return

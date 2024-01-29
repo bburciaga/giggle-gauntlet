@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var attack_area = get_node("AttackArea")
 @onready var player = get_node("../Player")
 
-const SPEED = 250
+const SPEED = 25
 const DAMAGE = 1
 var health = 3
 

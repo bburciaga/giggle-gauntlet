@@ -13,7 +13,7 @@ enum WeaponState {
 const water_path: Resource = preload("res://entities/projectiles/Water.tscn")
 const banana_path: Resource = preload("res://entities/projectiles/Banana.tscn")
 
-var SPEED: float = 300.0
+var SPEED: float = 150.0
 var INITIAL_WEAPON_POSITION: Vector2 = Vector2(915, -5)
 var weaponState: WeaponState = WeaponState.INACTIVE
 var health: int = 6
