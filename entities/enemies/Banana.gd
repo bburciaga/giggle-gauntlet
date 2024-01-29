@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var anim = get_node("AnimatedSprite2D")
 @onready var attack_area = get_node("AttackArea")
 @onready var player = get_node("../Player")
+@onready var player_vars = get_node("/root/PlayerVariables")
 
 const SPEED = 25
 const DAMAGE = 1
@@ -37,6 +38,7 @@ func take_damage():
 		await anim.animation_finished
 		anim.animation = "Idle"
 	else:
+		player_vars.score += 5
 		anim.play("Death")
 		await anim.animation_finished
 		self.queue_free()

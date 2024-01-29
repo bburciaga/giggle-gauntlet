@@ -15,7 +15,7 @@ const banana_path: Resource = preload("res://entities/projectiles/Banana.tscn")
 
 var SPEED: float = 150.0
 var INITIAL_WEAPON_POSITION: Vector2 = Vector2(915, -5)
-var weaponState: WeaponState = WeaponState.INACTIVE
+var weaponState: WeaponState = WeaponState.WATERGUN
 var health: int = 6
 var canDropBanana: bool = true
 var canShootWaterGun: bool = true
@@ -38,9 +38,7 @@ func _physics_process(delta) -> void:
 ###### Input Functions ######
 
 func take_damage(damage: int) -> void:
-	print_debug("Ouch")
 	health -= damage
-	print_debug(health)
 
 func move(direction) -> void:
 	velocity = direction * SPEED

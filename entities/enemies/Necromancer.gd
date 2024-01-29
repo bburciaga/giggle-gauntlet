@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var anim = get_node("AnimatedSprite2D")
 @onready var player = get_node("../Player")
 @export var ammo: PackedScene
+@onready var player_vars = get_node("/root/PlayerVariables")
 
 const wrench_path = preload("res://entities/projectiles/Wrench.tscn")
 
@@ -46,6 +47,7 @@ func take_damage() -> void:
 		await anim.animation_finished
 		anim.animation = "Idle"
 	else:
+		player_vars.score += 5
 		anim.play("Death")
 		await anim.animation_finished
 		self.queue_free()
@@ -58,7 +60,7 @@ func look() -> void:
 		return
 	
 	if direction.length() > 0:
-		if anim.animation != "Death" and anim.animation != "Hurt":
+		if anim.animation != "Death" and anim.animation != "Hurt" and anim.animation != "Attack":
 			anim.play("Run")
 		anim.flip_h = direction.x < 0
 	else:

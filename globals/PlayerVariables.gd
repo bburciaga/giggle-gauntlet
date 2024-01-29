@@ -6,3 +6,5 @@ enum WeaponState {
 	GNOME,
 	BANANA
 }
+
+var score = 0
