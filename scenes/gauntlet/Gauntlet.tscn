@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://jatpf4e6f5v8"]
+[gd_scene load_steps=18 format=3 uid="uid://jatpf4e6f5v8"]
 
 [ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_hg5t3"]
 [ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="2_used6"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c1pirnb80jep3" path="res://entities/collectibles/WaterGun.tscn" id="6_37eg7"]
 [ext_resource type="Texture2D" uid="uid://cukguo6pci0mw" path="res://entities/assets/sprites/collectibles/gnome_sword.png" id="6_pqdl4"]
 [ext_resource type="PackedScene" uid="uid://7ti8p8mmd5ak" path="res://entities/collectibles/Banana.tscn" id="7_vke37"]
-[ext_resource type="Texture2D" uid="uid://dscac2mhaibjy" path="res://entities/assets/sprites/collectibles/water_gun.png" id="7_xyort"]
+[ext_resource type="PackedScene" uid="uid://bxwov4sfh600f" path="res://entities/enemies/Necromancer.tscn" id="8_0bqli"]
 [ext_resource type="PackedScene" uid="uid://dm168nvssdbg2" path="res://entities/enemies/Banana.tscn" id="8_lggd0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tanib"]
@@ -190,3 +190,6 @@ position = Vector2(257, 503)
 
 [node name="Banana2" parent="." instance=ExtResource("8_lggd0")]
 position = Vector2(412, 302)
+
+[node name="Necromancer" parent="." instance=ExtResource("8_0bqli")]
+position = Vector2(559, 200)
