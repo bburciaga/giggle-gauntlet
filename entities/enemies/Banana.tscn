@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://dm168nvssdbg2"]
+[gd_scene load_steps=26 format=3 uid="uid://dm168nvssdbg2"]
 
+[ext_resource type="Script" path="res://entities/enemies/Banana.gd" id="1_oikax"]
 [ext_resource type="Texture2D" uid="uid://dw0ys3ru3auy8" path="res://entities/assets/sprites/collectibles/Banana.png" id="1_r81e0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hndd3"]
@@ -98,7 +99,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_80lho")
 }],
 "loop": true,
-"name": &"attack",
+"name": &"Attack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -115,7 +116,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_x7x1p")
 }],
 "loop": true,
-"name": &"death",
+"name": &"Death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -132,7 +133,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_sdys2")
 }],
 "loop": true,
-"name": &"hurt",
+"name": &"Hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -149,7 +150,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_bwer4")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"Idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -166,7 +167,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ho5hv")
 }],
 "loop": true,
-"name": &"run",
+"name": &"Run",
 "speed": 5.0
 }]
 
@@ -178,12 +179,13 @@ radius = 9.0
 height = 26.0
 
 [node name="Banana" type="CharacterBody2D"]
+script = ExtResource("1_oikax")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, -7)
 scale = Vector2(1.4375, 1.4375)
 sprite_frames = SubResource("SpriteFrames_vv5eg")
-animation = &"death"
+animation = &"Attack"
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 
