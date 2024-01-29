@@ -13,11 +13,10 @@ enum WeaponState {
 const water_path: Resource = preload("res://entities/projectiles/Water.tscn")
 const banana_path: Resource = preload("res://entities/projectiles/Banana.tscn")
 
-var SPEED = 300
-var INITIAL_WEAPON_POSITION = Vector2(915, -5)
-var enemy
+var SPEED: float = 300.0
+var INITIAL_WEAPON_POSITION: Vector2 = Vector2(915, -5)
 var weaponState: WeaponState = WeaponState.INACTIVE
-var health = 6
+var health: int = 6
 var canDropBanana: bool = true
 var canShootWaterGun: bool = true
 
@@ -40,6 +39,11 @@ func _on_gnome_hit_area_entered(area) -> void:
 		area.take_damage()
 	
 ###### Input Functions ######
+
+func take_damage(damage: int) -> void:
+	print_debug("Ouch")
+	health -= damage
+	print_debug(health)
 
 func move(direction) -> void:
 	velocity = direction * SPEED

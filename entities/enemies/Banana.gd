@@ -4,7 +4,8 @@ extends CharacterBody2D
 @onready var attack_area = get_node("AttackArea")
 
 var player
-var SPEED = 150
+const SPEED = 150
+const DAMAGE = 1
 var health = 3
 
 func _ready() -> void:
@@ -46,7 +47,8 @@ func take_damage():
 func _on_attack_area_area_entered(area):
 	if area.is_in_group("Player"):
 		anim.play("Attack")
-		
+		player.take_damage(DAMAGE)
+
 func get_rotated():
 	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
 	take_damage()
@@ -54,4 +56,3 @@ func get_rotated():
 	
 func _on_rotation_timer_timeout():
 	anim.rotation_degrees = 0.0
-
