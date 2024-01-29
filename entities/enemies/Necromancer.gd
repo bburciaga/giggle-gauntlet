@@ -2,17 +2,15 @@ extends CharacterBody2D
 
 @onready var ray_cast = $RayCast2D
 @onready var timer = $ProjectileTimer
+@onready var anim = get_node("AnimatedSprite2D")
+@onready var player = get_node("../Player")
 @export var ammo: PackedScene
 
-@onready var anim = get_node("AnimatedSprite2D")
 const wrench_path = preload("res://entities/projectiles/Wrench.tscn")
 
-var player
-var SPEED = 150
+var SPEED = 25
 var health = 3
 
-func _ready() -> void:
-	player = get_node("../Player")
 
 func _physics_process(delta):
 	look()
@@ -74,7 +72,8 @@ func _shoot():
 	var wrench: Wrench = ammo.instantiate()
 	wrench.position = position
 	wrench.direction = (ray_cast.target_position).normalized()
-	owner.add_child(wrench)
+	if not null == owner:
+		owner.add_child(wrench)
 
 #func _on_enemy_death_body_entered(body):
 	#if body.name == "Player":
