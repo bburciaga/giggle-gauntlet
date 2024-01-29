@@ -4,9 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="2_used6"]
 [ext_resource type="PackedScene" uid="uid://bx5y06krqdgry" path="res://entities/collectibles/Gnome.tscn" id="4_5obuh"]
 [ext_resource type="Texture2D" uid="uid://d4lysg3neevm5" path="res://entities/assets/sprites/player/clownfaces.png" id="5_hvx26"]
-[ext_resource type="Texture2D" uid="uid://dw0ys3ru3auy8" path="res://entities/assets/sprites/collectibles/Banana.png" id="5_wrhwu"]
 [ext_resource type="PackedScene" uid="uid://c1pirnb80jep3" path="res://entities/collectibles/WaterGun.tscn" id="6_37eg7"]
-[ext_resource type="Texture2D" uid="uid://cukguo6pci0mw" path="res://entities/assets/sprites/collectibles/gnome_sword.png" id="6_pqdl4"]
 [ext_resource type="PackedScene" uid="uid://7ti8p8mmd5ak" path="res://entities/collectibles/Banana.tscn" id="7_vke37"]
 [ext_resource type="PackedScene" uid="uid://bxwov4sfh600f" path="res://entities/enemies/Necromancer.tscn" id="8_0bqli"]
 [ext_resource type="PackedScene" uid="uid://dm168nvssdbg2" path="res://entities/enemies/Banana.tscn" id="8_lggd0"]
@@ -92,42 +90,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ji7qj"]
-atlas = ExtResource("5_wrhwu")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aa4uk"]
-atlas = ExtResource("5_wrhwu")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cfw58"]
-atlas = ExtResource("5_wrhwu")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3klnq"]
-atlas = ExtResource("5_wrhwu")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ommxu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ji7qj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aa4uk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cfw58")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3klnq")
-}],
-"loop": true,
-"name": &"Default",
-"speed": 5.0
-}]
-
 [node name="Gauntlet" type="Node2D"]
 script = ExtResource("1_hg5t3")
 
@@ -162,25 +124,6 @@ sprite_frames = SubResource("SpriteFrames_6kbte")
 animation = &"6"
 frame_progress = 0.71383
 offset = Vector2(100, 100)
-
-[node name="Gnome" type="Sprite2D" parent="UI"]
-visible = false
-position = Vector2(224.5, 55)
-scale = Vector2(1.125, 1.125)
-texture = ExtResource("6_pqdl4")
-
-[node name="Watergun" type="Sprite2D" parent="UI"]
-visible = false
-position = Vector2(226, 55)
-scale = Vector2(0.142, 0.142)
-texture = ExtResource("7_xyort")
-
-[node name="Banana" type="AnimatedSprite2D" parent="UI"]
-visible = false
-position = Vector2(230, 62)
-scale = Vector2(3.5625, 4.08384)
-sprite_frames = SubResource("SpriteFrames_ommxu")
-animation = &"Default"
 
 [node name="WaterGun" parent="." instance=ExtResource("6_37eg7")]
 position = Vector2(237, 285)
