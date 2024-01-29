@@ -34,10 +34,6 @@ func _physics_process(delta) -> void:
 	melee(direction)
 	if canShootWaterGun: shoot()
 	game_over()
-
-func _on_gnome_hit_area_entered(area) -> void:
-	if (area.is_in_group("Enemies")):
-		area.take_damage()
 	
 ###### Input Functions ######
 
@@ -139,3 +135,6 @@ func game_over():
 	if health <= 0:
 		get_tree().change_scene_to_file("res://menus/finish/Finish.tscn")
 
+func _on_gnome_hit_area_entered(area) -> void:
+	if (area.is_in_group("Enemies")):
+		area.take_damage()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cifnijn0br4a"]
 
-[ext_resource type="Texture2D" path="res://entities/assets/sprites/projectiles/wrench.png" id="1_q4be7"]
+[ext_resource type="Texture2D" uid="uid://gphadrqwmjng" path="res://entities/assets/sprites/projectiles/wrench.png" id="1_q4be7"]
 [ext_resource type="Script" path="res://entities/projectiles/Wrench.gd" id="1_rput1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3n26h"]

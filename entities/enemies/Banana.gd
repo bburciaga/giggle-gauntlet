@@ -2,20 +2,17 @@ extends CharacterBody2D
 
 @onready var anim = get_node("AnimatedSprite2D")
 @onready var attack_area = get_node("AttackArea")
+@onready var player = get_node("../Player")
 
-var player
-const SPEED = 150
+const SPEED = 25
 const DAMAGE = 1
 var health = 3
-
-func _ready() -> void:
-	player = get_node("../Player")
 
 func _process(delta):
 	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
 		return
-		
-	var direction = (player.global_position - self.global_position).normalized()
+
+	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * SPEED
 
 	if direction.length() > 0:
