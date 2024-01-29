@@ -72,8 +72,7 @@ func _shoot():
 	var wrench: Wrench = ammo.instantiate()
 	wrench.position = position
 	wrench.direction = (ray_cast.target_position).normalized()
-	if not null == owner:
-		owner.add_child(wrench)
+	get_tree().get_root().get_node(".").add_child(wrench)
 
 #func _on_enemy_death_body_entered(body):
 	#if body.name == "Player":
