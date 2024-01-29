@@ -160,6 +160,7 @@ height = 67.6811
 script = ExtResource("1_1ufj7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_a22av")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -185,6 +186,12 @@ shape = SubResource("CapsuleShape2D_dshac")
 
 [node name="ProjectileTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Area2D" type="Area2D" parent="." groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_a22av")
 
 [connection signal="area_entered" from="GnomeWeapon/GnomeHit" to="." method="_on_gnome_hit_area_entered"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

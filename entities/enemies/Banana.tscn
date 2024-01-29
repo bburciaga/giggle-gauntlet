@@ -171,12 +171,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xap24"]
-size = Vector2(20, 6)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7uni"]
 radius = 9.0
 height = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xap24"]
+size = Vector2(20, 6)
 
 [node name="Banana" type="CharacterBody2D"]
 script = ExtResource("1_oikax")
@@ -185,14 +185,18 @@ script = ExtResource("1_oikax")
 position = Vector2(7, -7)
 scale = Vector2(1.4375, 1.4375)
 sprite_frames = SubResource("SpriteFrames_vv5eg")
-animation = &"Attack"
-
-[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
-position = Vector2(6, 0)
-shape = SubResource("RectangleShape2D_xap24")
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -9)
 shape = SubResource("CapsuleShape2D_v7uni")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(7, -7)
+scale = Vector2(1.4375, 1.4375)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_xap24")
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
