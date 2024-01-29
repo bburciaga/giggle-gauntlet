@@ -10,6 +10,5 @@ func _on_area_entered(area):
 		$".".position = Vector2(2000, 2000)
 		area.get_rotated()
 		
-		
 func _on_timer_timeout():
 	queue_free()

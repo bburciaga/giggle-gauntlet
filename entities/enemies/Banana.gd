@@ -7,11 +7,13 @@ var player
 var SPEED = 150
 var health = 3
 
+func _ready() -> void:
+	player = get_node("../Player")
+
 func _process(delta):
 	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
 		return
 		
-	player = get_node("../Player")
 	var direction = (player.global_position - self.global_position).normalized()
 	velocity = direction * SPEED
 
@@ -20,12 +22,12 @@ func _process(delta):
 			anim.play("Run")
 		anim.flip_h = direction.x < 0
 		if anim.flip_h:
-			attack_area.position.x = -attack_area.position.x
+			$CollisionShape2D.position.x = 10
+			attack_area.position.x = -attack_area.position.x - 5
 		else:
 			attack_area.position.x = abs(attack_area.position.x)
 	else:
 		anim.play("Idle")
-	
 	move_and_slide()
 
 func take_damage():
