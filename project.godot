@@ -15,10 +15,6 @@ run/main_scene="res://menus/title/Title.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
-[autoload]
-
-Game="*res://globals/Game.gd"
-
 [display]
 
 window/canvas_textures/default_texture_filter=0
