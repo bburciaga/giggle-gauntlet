@@ -99,7 +99,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_80lho")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack",
 "speed": 5.0
 }, {
@@ -186,7 +186,7 @@ script = ExtResource("1_oikax")
 position = Vector2(7, -7)
 scale = Vector2(1.4375, 1.4375)
 sprite_frames = SubResource("SpriteFrames_vv5eg")
-animation = &"Death"
+animation = &"Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -9)
