@@ -42,7 +42,8 @@ func get_rotated():
 	
 func _on_rotation_timer_timeout():
 	anim.rotation_degrees = 0.0
-	
+
+
 #func _on_enemy_death_body_entered(body):
 	#if body.name == "Player":
 		#anim.play("Death")
