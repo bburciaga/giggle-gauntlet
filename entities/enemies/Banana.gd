@@ -47,6 +47,7 @@ func take_damage():
 func _on_attack_area_area_entered(area):
 	if area.is_in_group("Player"):
 		anim.play("Attack")
+		player.take_damage(DAMAGE)
 
 func get_rotated():
 	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
