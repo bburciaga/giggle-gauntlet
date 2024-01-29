@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cukguo6pci0mw" path="res://entities/assets/sprites/collectibles/gnome_sword.png" id="6_pqdl4"]
 [ext_resource type="Texture2D" uid="uid://dscac2mhaibjy" path="res://entities/assets/sprites/collectibles/water_gun.png" id="7_xyort"]
 [ext_resource type="PackedScene" uid="uid://ta4gh8w3pp3" path="res://utility/EnemySpawner.tscn" id="9_7nq4o"]
-[ext_resource type="PackedScene" uid="uid://urg6hjbhymf" path="res://utility/ItemSpawner.tscn" id="10_bs1ri"]
+[ext_resource type="PackedScene" uid="uid://cr8ly58eqt33x" path="res://utility/ItemSpawner.tscn" id="10_bs1ri"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tanib"]
 size = Vector2(1171, 15)

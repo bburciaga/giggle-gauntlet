@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://urg6hjbhymf"]
+[gd_scene load_steps=9 format=3 uid="uid://cr8ly58eqt33x"]
 
 [ext_resource type="Script" path="res://utility/ItemSpawner.gd" id="1_kad7g"]
 [ext_resource type="PackedScene" uid="uid://7ti8p8mmd5ak" path="res://entities/collectibles/Banana.tscn" id="2_l2c1j"]
