@@ -15,21 +15,9 @@ func _ready() -> void:
 	player = get_node("../Player")
 
 func _physics_process(delta):
-	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
-		return
-		
-	var direction = (player.global_position - self.global_position).normalized()
-	#velocity = direction * SPEED
-	
+	look()
 	_aim()
 	_check_player_collsion()
-	
-	if direction.length() > 0:
-		if anim.animation != "Death" and anim.animation != "Hurt":
-			anim.play("Run")
-		anim.flip_h = direction.x < 0
-	else:
-		anim.play("Idle")
 	move_and_slide()
 
 func _aim() -> void:
@@ -63,6 +51,19 @@ func take_damage() -> void:
 		anim.play("Death")
 		await anim.animation_finished
 		self.queue_free()
+
+func look() -> void:
+	var direction = (player.global_position - self.global_position).normalized()
+	
+	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
+		return
+	
+	if direction.length() > 0:
+		if anim.animation != "Death" and anim.animation != "Hurt":
+			anim.play("Run")
+		anim.flip_h = direction.x < 0
+	else:
+		anim.play("Idle")
 
 func get_rotated():
 	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
