@@ -109,14 +109,16 @@ size = Vector2(20, 6)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7uni"]
 radius = 9.0
-height = 18.0
+height = 26.0
 
 [node name="Banana" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, -7)
+scale = Vector2(1.4375, 1.4375)
 sprite_frames = SubResource("SpriteFrames_vv5eg")
 animation = &"attack"
-frame_progress = 0.517911
+frame_progress = 0.0953475
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 
@@ -125,5 +127,5 @@ position = Vector2(6, 0)
 shape = SubResource("RectangleShape2D_xap24")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -2)
+position = Vector2(2, -9)
 shape = SubResource("CapsuleShape2D_v7uni")
