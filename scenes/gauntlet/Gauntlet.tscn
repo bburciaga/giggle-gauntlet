@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_hg5t3"]
 [ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="2_used6"]
-[ext_resource type="PackedScene" uid="uid://bxwov4sfh600f" path="res://entities/enemies/Necromancer.tscn" id="3_6uynd"]
 [ext_resource type="PackedScene" uid="uid://bx5y06krqdgry" path="res://entities/collectibles/Gnome.tscn" id="4_5obuh"]
 [ext_resource type="Texture2D" uid="uid://d4lysg3neevm5" path="res://entities/assets/sprites/player/clownfaces.png" id="5_hvx26"]
 [ext_resource type="PackedScene" uid="uid://c1pirnb80jep3" path="res://entities/collectibles/WaterGun.tscn" id="6_37eg7"]
 [ext_resource type="PackedScene" uid="uid://7ti8p8mmd5ak" path="res://entities/collectibles/Banana.tscn" id="7_vke37"]
+[ext_resource type="PackedScene" uid="uid://dm168nvssdbg2" path="res://entities/enemies/Banana.tscn" id="8_lggd0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tanib"]
 size = Vector2(1171, 15)
@@ -113,18 +113,6 @@ shape = SubResource("RectangleShape2D_sdfqw")
 position = Vector2(1156, -0.5)
 shape = SubResource("RectangleShape2D_sdfqw")
 
-[node name="Enemy" parent="." instance=ExtResource("3_6uynd")]
-position = Vector2(678, 304)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_6uynd")]
-position = Vector2(448, 444)
-
-[node name="Enemy4" parent="." instance=ExtResource("3_6uynd")]
-position = Vector2(309, 339)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_6uynd")]
-position = Vector2(546, 116)
-
 [node name="Gnome" parent="." instance=ExtResource("4_5obuh")]
 position = Vector2(288, 213)
 
@@ -141,3 +129,6 @@ position = Vector2(237, 285)
 
 [node name="Banana" parent="." instance=ExtResource("7_vke37")]
 position = Vector2(257, 503)
+
+[node name="Banana2" parent="." instance=ExtResource("8_lggd0")]
+position = Vector2(412, 302)
