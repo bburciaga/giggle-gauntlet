@@ -70,19 +70,17 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jisph"]
 
 [node name="Area2D" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_rput1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5.96046e-08, -1.69407e-21)
 scale = Vector2(0.155977, 0.155977)
 sprite_frames = SubResource("SpriteFrames_gojjq")
-frame_progress = 0.0576214
+frame_progress = 0.78187
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CircleShape2D_jisph")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-script = ExtResource("1_rput1")
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

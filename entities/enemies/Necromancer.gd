@@ -43,15 +43,15 @@ func _check_player_collsion() -> void:
 
 ##### Timeout #####
 
-func _on_rotation_timer_timeout():
+func _on_rotation_timer_timeout() -> void:
 	anim.rotation_degrees = 0.0
 
-func _on_timer_timeout():
+func _on_projectile_timer_timeout() -> void:
 	_shoot()
 
 ##### Actions #####
 
-func take_damage():
+func take_damage() -> void:
 	if anim.animation != "Hurt":
 		health -= 1
 		
