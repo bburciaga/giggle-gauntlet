@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 const wrench_path = preload("res://entities/projectiles/Wrench.tscn")
 
-var SPEED = 25
+var SPEED = 15
 var health = 3
 
 
@@ -52,6 +52,7 @@ func take_damage() -> void:
 
 func look() -> void:
 	var direction = (player.global_position - self.global_position).normalized()
+	velocity = direction * SPEED
 	
 	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
 		return
@@ -72,8 +73,8 @@ func _shoot():
 	var wrench: Wrench = ammo.instantiate()
 	wrench.position = position
 	wrench.direction = (ray_cast.target_position).normalized()
-	if not null == owner:
-		owner.add_child(wrench)
+	anim.play("Attack")
+	get_tree().get_root().get_node(".").add_child(wrench)
 
 #func _on_enemy_death_body_entered(body):
 	#if body.name == "Player":

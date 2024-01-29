@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://w34n4o0hbsr2" path="res://entities/assets/sprites/enemies/Necromancer.png" id="1_e3vfi"]
 [ext_resource type="Script" path="res://entities/enemies/Necromancer.gd" id="1_qagpp"]
-[ext_resource type="PackedScene" path="res://entities/projectiles/Wrench.tscn" id="2_yvrpi"]
+[ext_resource type="PackedScene" uid="uid://cifnijn0br4a" path="res://entities/projectiles/Wrench.tscn" id="2_yvrpi"]
 [ext_resource type="Script" path="res://entities/enemies/PlayerDetection.gd" id="3_q7t8h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5kud"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var spawns: Array[SpawnInfo] = []
+@export var spawns: Array[ItemInfo] = []
 
 @onready var player: Node = get_tree().get_first_node_in_group("Player")
 
@@ -9,38 +9,38 @@ var time: int = 0
 func _on_timer_timeout():
 	time += 1
 
-	var enemy_spawns = spawns
-	for i in enemy_spawns:
+	var item_spawns = spawns
+	for i in item_spawns:
 		if i.time_start <= time and i.time_end >= time:
-			if i.spawn_delay_counter < i.enemy_spawn_delay:
+			if i.spawn_delay_counter < i.item_spawn_delay:
 				i.spawn_delay_counter += 1
 			else:
 				i.spawn_delay_counter = 0
-				var new_enemy = load(str(i.enemy.resource_path))
+				var new_item = load(str(i.item.resource_path))
 				var counter = 0
-				while counter < i.enemy_num:
-					var enemy_spawn = new_enemy.instantiate()
-					enemy_spawn.global_position = get_random_position()
-					owner.add_child(enemy_spawn)
+				while counter < i.item_num:
+					var item_spawn = new_item.instantiate()
+					item_spawn.global_position = get_random_position()
+					owner.add_child(item_spawn)
 					counter += 1
 
 func get_random_position():
 	var vpr = get_viewport_rect().size * randf_range(1.1, 1.4)
 	var top_left: Vector2 = Vector2(
-		player.global_position.x - vpr.x / 5,
-		player.global_position.y - vpr.y / 5
+		player.global_position.x + vpr.x / 8,
+		player.global_position.y + vpr.y / 8
 	)
 	var top_right: Vector2 = Vector2(
-		player.global_position.x + vpr.x / 5,
-		player.global_position.y - vpr.y / 5
+		player.global_position.x - vpr.x / 8,
+		player.global_position.y + vpr.y / 8
 	)
 	var bottom_left: Vector2 = Vector2(
-		player.global_position.x - vpr.x / 5,
-		player.global_position.y + vpr.y / 5
+		player.global_position.x + vpr.x / 8,
+		player.global_position.y - vpr.y / 8
 	)
 	var bottom_right: Vector2 = Vector2(
-		player.global_position.x + vpr.x / 5,
-		player.global_position.y + vpr.y / 5
+		player.global_position.x - vpr.x / 8,
+		player.global_position.y - vpr.y / 8
 	)
 	
 	var pos_side: String = ["up", "down", "left", "right"].pick_random()
