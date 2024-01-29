@@ -34,9 +34,6 @@ func _physics_process(delta) -> void:
 	move(direction)
 	melee(direction)
 	if canShootWaterGun: shoot()
-	else:
-		await get_tree().create_timer(0.5).timeout
-		canShootWaterGun = true
 
 func _on_gnome_hit_area_entered(area) -> void:
 	if (area.is_in_group("Enemies")):
@@ -90,12 +87,13 @@ func drop_banana():
 	banana_instance.position = position
 	get_parent().add_child(banana_instance)
 
-func _on_cooldown_timer_timeout():
-	match (weaponState):
-		WeaponState.BANANA:
-			canDropBanana = true
-		WeaponState.WATERGUN:
-			canShootWaterGun = true
+##### Timeouts #####
+
+func _on_cooldown_timer_timeout() -> void:
+	canDropBanana = true
+
+func _on_projectile_timer_timeout() -> void:
+	canShootWaterGun = true
 
 ###### Activation Functions ######
 
@@ -120,6 +118,11 @@ func start_cooldown():
 			$CooldownTimer.start()
 		WeaponState.WATERGUN:
 			canShootWaterGun = false
+			$ProjectileTimer.start()
+
+func start_projectile_cooldown():
+	canShootWaterGun = false
+	$ProjectileTime.start()
 
 func add_projectile(degree: float) -> void:
 	var instance: Water = water_path.instantiate()
@@ -127,3 +130,4 @@ func add_projectile(degree: float) -> void:
 	instance.rotation_degrees = degree
 	owner.add_child(instance)
 	start_cooldown()
+
