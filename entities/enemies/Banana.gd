@@ -4,7 +4,8 @@ extends CharacterBody2D
 @onready var attack_area = get_node("AttackArea")
 
 var player
-var SPEED = 150
+const SPEED = 150
+const DAMAGE = 1
 var health = 3
 
 func _ready() -> void:
