@@ -36,6 +36,7 @@ animations = [{
 }]
 
 [node name="Gnome" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_it2gb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

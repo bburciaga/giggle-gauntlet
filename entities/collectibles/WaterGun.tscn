@@ -17,6 +17,7 @@ animations = [{
 }]
 
 [node name="WaterGun" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_cjiwj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

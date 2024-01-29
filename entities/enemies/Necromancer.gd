@@ -1,18 +1,28 @@
 extends CharacterBody2D
 
+@onready var ray_cast = $RayCast2D
+@onready var timer = $ProjectileTimer
+@export var ammo: PackedScene
+
 @onready var anim = get_node("AnimatedSprite2D")
+const wrench_path = preload("res://entities/projectiles/Wrench.tscn")
 
 var player
 var SPEED = 150
 var health = 3
 
+func _ready() -> void:
+	player = get_node("../Player")
+
 func _physics_process(delta):
 	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
 		return
 		
-	player = get_node("../Player")
 	var direction = (player.global_position - self.global_position).normalized()
-	velocity = direction * SPEED
+	#velocity = direction * SPEED
+	
+	_aim()
+	_check_player_collsion()
 	
 	if direction.length() > 0:
 		if anim.animation != "Death" and anim.animation != "Hurt":
@@ -21,7 +31,26 @@ func _physics_process(delta):
 	else:
 		anim.play("Idle")
 	move_and_slide()
-		
+
+func _aim() -> void:
+	ray_cast.target_position = to_local(player.global_position)
+
+func _check_player_collsion() -> void:
+	if ray_cast.get_collider() == player and timer.is_stopped():
+		timer.start()
+	elif ray_cast.get_collider() != player and not timer.is_stopped():
+		timer.stop()
+
+##### Timeout #####
+
+func _on_rotation_timer_timeout():
+	anim.rotation_degrees = 0.0
+
+func _on_timer_timeout():
+	_shoot()
+
+##### Actions #####
+
 func take_damage():
 	if anim.animation != "Hurt":
 		health -= 1
@@ -39,10 +68,12 @@ func get_rotated():
 	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
 	take_damage()
 	$RotationTimer.start()
-	
-func _on_rotation_timer_timeout():
-	anim.rotation_degrees = 0.0
 
+func _shoot():
+	var wrench: Wrench = ammo.instantiate()
+	wrench.position = position
+	wrench.direction = (ray_cast.target_position).normalized()
+	owner.add_child(wrench)
 
 #func _on_enemy_death_body_entered(body):
 	#if body.name == "Player":
