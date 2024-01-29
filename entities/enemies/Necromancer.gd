@@ -73,6 +73,7 @@ func _shoot():
 	var wrench: Wrench = ammo.instantiate()
 	wrench.position = position
 	wrench.direction = (ray_cast.target_position).normalized()
+	anim.play("Attack")
 	get_tree().get_root().get_node(".").add_child(wrench)
 
 #func _on_enemy_death_body_entered(body):
