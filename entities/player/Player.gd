@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 enum WeaponState {
 	INACTIVE,
-  WATERGUN,
+  	WATERGUN,
 	GNOME,
 	BANANA
 }
@@ -11,7 +11,7 @@ enum WeaponState {
 @onready var gnomeWeapon: Node = get_node("GnomeWeapon")
 @onready var watergunWeapon: Node = get_node("WaterGunWeapon")
 const water_path: Resource = preload("res://entities/projectiles/Water.tscn")
-const banana_path = preload("res://entities/projectiles/Banana.tscn")
+const banana_path: Resource = preload("res://entities/projectiles/Banana.tscn")
 
 var SPEED = 300
 var INITIAL_WEAPON_POSITION = Vector2(915, -5)
@@ -19,6 +19,7 @@ var enemy
 var weaponState: WeaponState = WeaponState.INACTIVE
 var health = 6
 var canDropBanana: bool = true
+var canShootWaterGun: bool = true
 
 func _ready() -> void:
 	gnomeWeapon.position = INITIAL_WEAPON_POSITION
@@ -32,7 +33,10 @@ func _physics_process(delta) -> void:
 	)
 	move(direction)
 	melee(direction)
-	shoot()
+	if canShootWaterGun: shoot()
+	else:
+		await get_tree().create_timer(0.5).timeout
+		canShootWaterGun = true
 
 func _on_gnome_hit_area_entered(area) -> void:
 	if (area.is_in_group("Enemies")):
@@ -79,19 +83,20 @@ func shoot() -> void:
 			add_projectile(270.0)
 		if Input.is_action_just_pressed("arrow_down"):
 			add_projectile(90.0)
+			
 
 func drop_banana():
 	var banana_instance = banana_path.instantiate()
 	banana_instance.position = position
 	get_parent().add_child(banana_instance)
 
-func start_cooldown():
-	canDropBanana = false
-	$CooldownTimer.start()
-
 func _on_cooldown_timer_timeout():
-	canDropBanana = true
-	
+	match (weaponState):
+		WeaponState.BANANA:
+			canDropBanana = true
+		WeaponState.WATERGUN:
+			canShootWaterGun = true
+
 ###### Activation Functions ######
 
 func activate_gnome_weapon() -> void:
@@ -108,8 +113,17 @@ func activate_banana_weapon() -> void:
 
 ###### Helpers ######
 
+func start_cooldown():
+	match (weaponState):
+		WeaponState.BANANA:
+			canDropBanana = false
+			$CooldownTimer.start()
+		WeaponState.WATERGUN:
+			canShootWaterGun = false
+
 func add_projectile(degree: float) -> void:
 	var instance: Water = water_path.instantiate()
 	instance.transform = $CollisionShape2D.global_transform
 	instance.rotation_degrees = degree
 	owner.add_child(instance)
+	start_cooldown()
