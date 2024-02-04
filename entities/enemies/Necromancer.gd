@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var ray_cast = $RayCast2D
 @onready var timer = $ProjectileTimer
-@onready var anim = get_node("AnimatedSprite2D")
+@onready var anim: AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var player = get_node("../Player")
 @export var ammo: PackedScene
 @onready var player_vars = get_node("/root/PlayerVariables")
@@ -25,7 +25,7 @@ func damage(attack: Attack, activate: bool = false) -> void:
 	if anim.animation != "Hurt":
 		health -= attack.damage
 	
-	velocity = (self.global_position - attack.position) * attack.knockback_force
+	velocity = (global_position - attack.position) * attack.knockback_force
 	move_and_slide()
 	
 	if health >= 1:
@@ -43,7 +43,7 @@ func damage(attack: Attack, activate: bool = false) -> void:
 
 func move() -> void:
 	var direction = (player.global_position - self.global_position).normalized()
-	if "Hurt" == anim.animation:
+	if "Hurt" == anim.animation or "Death" == anim.animation:
 		velocity = direction * 0
 	else:
 		velocity = direction * SPEED

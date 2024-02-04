@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdya25dhs012d"]
+
+[ext_resource type="Script" path="res://entities/HealthComponent.gd" id="1_fepgi"]
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_fepgi")

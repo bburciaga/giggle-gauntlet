@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var anim = get_node("AnimatedSprite2D")
+@onready var anim: AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var attack_area = get_node("AttackArea")
 @onready var player = get_node("../Player")
 @onready var player_vars = get_node("/root/PlayerVariables")
@@ -21,7 +21,7 @@ func move() -> void:
 	
 	# get direction to player
 	var direction = global_position.direction_to(player.global_position)
-	if "Hurt" == anim.animation:
+	if "Hurt" == anim.animation or "Death" == anim.animation:
 		velocity = direction * 0
 	else:
 		velocity = direction * SPEED
