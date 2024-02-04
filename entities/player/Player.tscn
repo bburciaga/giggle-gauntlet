@@ -1,10 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://clhmrsqbyjwkw"]
+[gd_scene load_steps=30 format=3 uid="uid://clhmrsqbyjwkw"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_1ufj7"]
 [ext_resource type="Texture2D" uid="uid://btc3chabdpnlc" path="res://entities/assets/sprites/player/Full/Generic_Man_Idle.png" id="1_vk2q6"]
+[ext_resource type="PackedScene" uid="uid://cdya25dhs012d" path="res://entities/HealthComponent.tscn" id="2_fehem"]
 [ext_resource type="Texture2D" uid="uid://cp5aloci2bgox" path="res://entities/assets/sprites/player/Full/Generic_Man_Jump.png" id="3_4o4i5"]
+[ext_resource type="PackedScene" uid="uid://b0pqeqfef3go5" path="res://entities/HitboxComponent.tscn" id="3_7tch1"]
 [ext_resource type="Texture2D" uid="uid://sl1fcetbeoxw" path="res://entities/assets/sprites/player/Full/Generic_Man_Run.png" id="4_rg3f8"]
 [ext_resource type="Texture2D" uid="uid://cukguo6pci0mw" path="res://entities/assets/sprites/collectibles/gnome_sword.png" id="5_kla0y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxlha"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a22av"]
 
@@ -160,6 +164,17 @@ height = 67.6811
 collision_mask = 3
 script = ExtResource("1_1ufj7")
 
+[node name="HealthComponent" parent="." instance=ExtResource("2_fehem")]
+MAX_HEALTH = 6.0
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["Player"] instance=ExtResource("3_7tch1")]
+collision_layer = 2
+collision_mask = 7
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape2D_yxlha")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_a22av")
@@ -187,12 +202,6 @@ shape = SubResource("CapsuleShape2D_dshac")
 
 [node name="ProjectileTimer" type="Timer" parent="."]
 wait_time = 0.5
-
-[node name="Area2D" type="Area2D" parent="." groups=["Player"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 3)
-shape = SubResource("CapsuleShape2D_a22av")
 
 [connection signal="area_entered" from="GnomeWeapon/GnomeHit" to="." method="_on_gnome_hit_area_entered"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

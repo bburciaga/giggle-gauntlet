@@ -16,7 +16,7 @@ const banana_path: Resource = preload("res://entities/projectiles/Banana.tscn")
 var SPEED: float = 150.0
 var INITIAL_WEAPON_POSITION: Vector2 = Vector2(915, -5)
 var weaponState: WeaponState = WeaponState.WATERGUN
-var health: int = 6
+#var health: int = 6
 var canDropBanana: bool = true
 var canShootWaterGun: bool = true
 
@@ -33,14 +33,14 @@ func _physics_process(delta) -> void:
 	move(direction)
 	melee(direction)
 	if canShootWaterGun: shoot()
-	game_over()
+	#game_over()
 	
 ###### Input Functions ######
 
-func damage(attack: Attack, activate: bool = false) -> void:
-	health -= attack.damage
-	velocity = (self.global_position - attack.position) * attack.knockback_force
-	move_and_slide()
+#func damage(attack: Attack, activate: bool = false) -> void:
+	#health -= attack.damage
+	#velocity = (self.global_position - attack.position) * attack.knockback_force
+	#move_and_slide()
 
 func move(direction) -> void:
 	velocity = direction * SPEED
@@ -131,9 +131,9 @@ func add_projectile(degree: float) -> void:
 	owner.add_child(instance)
 	start_cooldown()
 
-func game_over():
-	if health <= 0:
-		get_tree().change_scene_to_file("res://menus/finish/Finish.tscn")
+#func game_over():
+	#if health <= 0:
+		#get_tree().change_scene_to_file("res://menus/finish/Finish.tscn")
 
 func _on_gnome_hit_area_entered(area) -> void:
 	if (area.is_in_group("Enemies")):

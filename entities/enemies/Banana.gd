@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 const SPEED = 25
 var health = 3
-var ATTACK: Attack =Attack.new(1, self.global_position, -2.5)
+var ATTACK: Attack = Attack.new(1, self.global_position, -2.5)
 
 func _process(delta):
 	move()
@@ -64,9 +64,12 @@ func damage(attack: Attack, activate: bool = false):
 ##### Utility Methods #####
 
 func _on_attack_area_area_entered(area: Area2D):
-	if area.is_in_group("Player"):
-		anim.play("Attack")
-		player.damage(ATTACK)
+	var entity = area.get_parent()
+	if area is HitboxComponent:
+		var hitbox: HitboxComponent = area
+		if "Player" == entity.name:
+			anim.play("Attack")
+			hitbox.damage(ATTACK)
 
 func _on_rotation_timer_timeout():
 	anim.rotation_degrees = 0.0

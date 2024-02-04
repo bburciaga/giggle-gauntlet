@@ -12,6 +12,8 @@ func _ready():
 func damage (attack: Attack, activate: bool = false):
 	health -= attack.damage
 	
+	print(get_parent().name, " ", self.health)
+	
 	var animation: AnimatedSprite2D = get_parent().get_node("AnimatedSprite2D")
 	if health >= 1:
 		animation.play("Hurt")
