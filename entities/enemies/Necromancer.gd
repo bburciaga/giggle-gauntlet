@@ -38,7 +38,7 @@ func _on_projectile_timer_timeout() -> void:
 
 ##### Actions #####
 
-func take_damage() -> void:
+func take_damage(attack: Attack) -> void:
 	if anim.animation != "Hurt":
 		health -= 1
 		
@@ -66,9 +66,9 @@ func look() -> void:
 	else:
 		anim.play("Idle")
 
-func get_rotated():
+func get_rotated(attack: Attack):
 	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
-	take_damage()
+	take_damage(attack)
 	$RotationTimer.start()
 
 func _shoot():

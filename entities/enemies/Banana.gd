@@ -6,8 +6,8 @@ extends CharacterBody2D
 @onready var player_vars = get_node("/root/PlayerVariables")
 
 const SPEED = 25
-const DAMAGE = 1
 var health = 3
+var ATTACK: Attack =Attack.new(1, self.global_position, -2.5)
 
 func _process(delta):
 	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
@@ -29,9 +29,12 @@ func _process(delta):
 		anim.play("Idle")
 	move_and_slide()
 
-func take_damage():
+func take_damage(attack: Attack):
 	if anim.animation != "Hurt":
-		health -= 1
+		health -= attack.damage
+	
+	velocity = (global_position - attack.attack_position) * attack.knockback_force
+	move_and_slide()
 		
 	if health >= 1:
 		anim.play("Hurt")
@@ -46,11 +49,11 @@ func take_damage():
 func _on_attack_area_area_entered(area):
 	if area.is_in_group("Player"):
 		anim.play("Attack")
-		player.take_damage(DAMAGE)
+		player.take_damage(ATTACK)
 
-func get_rotated():
+func get_rotated(attack: Attack):
 	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
-	take_damage()
+	take_damage(attack)
 	$RotationTimer.start()
 	
 func _on_rotation_timer_timeout():
