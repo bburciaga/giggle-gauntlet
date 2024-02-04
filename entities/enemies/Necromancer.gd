@@ -38,7 +38,7 @@ func _on_projectile_timer_timeout() -> void:
 
 ##### Actions #####
 
-func take_damage(attack: Attack) -> void:
+func take_damage(attack: Attack, activate: bool = false) -> void:
 	if anim.animation != "Hurt":
 		health -= 1
 		
@@ -51,6 +51,9 @@ func take_damage(attack: Attack) -> void:
 		anim.play("Death")
 		await anim.animation_finished
 		self.queue_free()
+	
+	if activate:
+		$RotationTimer.start()
 
 func look() -> void:
 	var direction = (player.global_position - self.global_position).normalized()

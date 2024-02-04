@@ -62,6 +62,7 @@ shape = SubResource("CircleShape2D_rvabd")
 
 [node name="SlipSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_m46f6")
+volume_db = -40.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0

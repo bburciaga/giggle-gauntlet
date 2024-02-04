@@ -29,7 +29,7 @@ func _process(delta):
 		anim.play("Idle")
 	move_and_slide()
 
-func take_damage(attack: Attack):
+func take_damage(attack: Attack, activate: bool = false):
 	if anim.animation != "Hurt":
 		health -= attack.damage
 	
@@ -45,7 +45,10 @@ func take_damage(attack: Attack):
 		anim.play("Death")
 		await anim.animation_finished
 		self.queue_free()
-		
+	
+	if activate:
+		$RotationTimer.start()
+
 func _on_attack_area_area_entered(area):
 	if area.is_in_group("Player"):
 		anim.play("Attack")
