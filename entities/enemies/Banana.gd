@@ -10,12 +10,23 @@ var health = 3
 var ATTACK: Attack =Attack.new(1, self.global_position, -2.5)
 
 func _process(delta):
+	move()
+
+##### Entity Actions #####
+
+func move() -> void:
+	# rotate entity
 	if (anim.rotation_degrees == -90.0 || anim.rotation_degrees == 90.0):  
 		return
-
+	
+	# get direction to player
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * SPEED
-
+	if "Hurt" == anim.animation:
+		velocity = direction * 0
+	else:
+		velocity = direction * SPEED
+	
+	# animation check to see if it should play run animation
 	if direction.length() > 0:
 		if anim.animation != "Death" and anim.animation != "Hurt" and anim.animation != "Attack":
 			anim.play("Run")
@@ -27,13 +38,14 @@ func _process(delta):
 			attack_area.position.x = abs(attack_area.position.x)
 	else:
 		anim.play("Idle")
+	
 	move_and_slide()
 
-func take_damage(attack: Attack, activate: bool = false):
+func damage(attack: Attack, activate: bool = false):
 	if anim.animation != "Hurt":
 		health -= attack.damage
 	
-	velocity = (global_position - attack.attack_position) * attack.knockback_force
+	velocity = (global_position - attack.position) * attack.knockback_force
 	move_and_slide()
 		
 	if health >= 1:
@@ -49,15 +61,12 @@ func take_damage(attack: Attack, activate: bool = false):
 	if activate:
 		$RotationTimer.start()
 
-func _on_attack_area_area_entered(area):
+##### Utility Methods #####
+
+func _on_attack_area_area_entered(area: Area2D):
 	if area.is_in_group("Player"):
 		anim.play("Attack")
-		player.take_damage(ATTACK)
+		player.damage(ATTACK)
 
-func get_rotated(attack: Attack):
-	anim.rotation_degrees = -90.0 if randf() < 0.5 else 90.0
-	take_damage(attack)
-	$RotationTimer.start()
-	
 func _on_rotation_timer_timeout():
 	anim.rotation_degrees = 0.0

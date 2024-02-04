@@ -37,9 +37,9 @@ func _physics_process(delta) -> void:
 	
 ###### Input Functions ######
 
-func take_damage(attack: Attack) -> void:
+func damage(attack: Attack, activate: bool = false) -> void:
 	health -= attack.damage
-	velocity = (self.global_position - attack.attack_position) * attack.knockback_force
+	velocity = (self.global_position - attack.position) * attack.knockback_force
 	move_and_slide()
 
 func move(direction) -> void:

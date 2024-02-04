@@ -18,7 +18,7 @@ func _on_body_entered(body: Node2D):
 		"StaticBody2D":
 			queue_free()
 		"Player":
-			body.take_damage(ATTACK)
+			body.damage(ATTACK)
 			queue_free()
 
 func _on_screen_exited():

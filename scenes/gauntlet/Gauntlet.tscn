@@ -1,10 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://jatpf4e6f5v8"]
+[gd_scene load_steps=29 format=3 uid="uid://jatpf4e6f5v8"]
 
 [ext_resource type="Script" path="res://scenes/gauntlet/Gauntlet.gd" id="1_hg5t3"]
 [ext_resource type="PackedScene" uid="uid://clhmrsqbyjwkw" path="res://entities/player/Player.tscn" id="2_used6"]
 [ext_resource type="Texture2D" uid="uid://bcngijdlbty4o" path="res://scenes/gauntlet/assets/tile2.png" id="3_41iff"]
 [ext_resource type="Texture2D" uid="uid://dst106bnbqwa4" path="res://scenes/gauntlet/assets/tile.png" id="3_trqtc"]
-[ext_resource type="PackedScene" uid="uid://bx5y06krqdgry" path="res://entities/collectibles/Gnome.tscn" id="4_5obuh"]
 [ext_resource type="Texture2D" uid="uid://d4lysg3neevm5" path="res://entities/assets/sprites/player/clownfaces.png" id="5_hvx26"]
 [ext_resource type="Texture2D" uid="uid://dw0ys3ru3auy8" path="res://entities/assets/sprites/collectibles/Banana.png" id="5_wrhwu"]
 [ext_resource type="Texture2D" uid="uid://cukguo6pci0mw" path="res://entities/assets/sprites/collectibles/gnome_sword.png" id="6_pqdl4"]
@@ -205,5 +204,7 @@ sprite_frames = SubResource("SpriteFrames_4cln0")
 animation = &"Default"
 
 [node name="ItemSpawner" parent="." instance=ExtResource("10_bs1ri")]
+visible = false
 
 [node name="EnemySpawner" parent="." instance=ExtResource("9_7nq4o")]
+visible = false

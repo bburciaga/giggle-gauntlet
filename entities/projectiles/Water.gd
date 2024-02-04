@@ -9,9 +9,9 @@ func _physics_process(delta):
 	position += transform.x * speed * delta
 
 func _on_area_entered(area: Area2D):
-	print(area.get_parent().has_method("take_damage"))
-	if area.is_in_group("Enemies") and area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(ATTACK)
+	print(area.get_parent().has_method("damage"))
+	if area.is_in_group("Enemies") and area.get_parent().has_method("damage"):
+		area.get_parent().damage(ATTACK)
 		queue_free()
 
 func _on_screen_exited():
