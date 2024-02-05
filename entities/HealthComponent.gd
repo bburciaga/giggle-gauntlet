@@ -8,6 +8,9 @@ var health: float
 func _ready():
 	health = MAX_HEALTH
 
+func _process(delta):
+	game_over()
+
 func damage (attack: Attack, activate: bool = false):
 	health -= attack.damage
 	
@@ -24,3 +27,7 @@ func damage (attack: Attack, activate: bool = false):
 	
 	if health <= 0:
 		get_parent().queue_free()
+
+func game_over():
+	if "Player" == get_parent().name and 1 > health:
+		get_tree().change_scene_to_file("res://menus/finish/Finish.tscn")

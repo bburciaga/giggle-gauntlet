@@ -45,7 +45,7 @@ func move() -> void:
 func _on_attack_area_area_entered(area: Area2D):
 	if area is HitboxComponent:
 		var hitbox: HitboxComponent = area
-		if area.is_in_group("Player"):
+		if hitbox.is_in_group("Player"):
 			anim.play("Attack")
 			hitbox.damage(ATTACK)
 

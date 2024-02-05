@@ -38,10 +38,10 @@ func move() -> void:
 
 func _shoot():
 	if "Hurt" != anim.animation and anim.animation != "Death":
+		anim.play("Attack")
 		var wrench: Wrench = ammo.instantiate()
 		wrench.position = position
 		wrench.direction = (ray_cast.target_position).normalized()
-		anim.play("Attack")
 		get_tree().get_root().get_node(".").add_child(wrench)
 
 ##### Entity Auto #####

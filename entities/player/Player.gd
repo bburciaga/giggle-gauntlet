@@ -17,7 +17,6 @@ var ATTACK: Attack = Attack.new(1, self.global_position, 5)
 var SPEED: float = 150.0
 var INITIAL_WEAPON_POSITION: Vector2 = Vector2(915, -5)
 var weaponState: WeaponState = WeaponState.GNOME
-#var health: int = 6
 var canDropBanana: bool = true
 var canShootWaterGun: bool = true
 
@@ -34,7 +33,6 @@ func _physics_process(delta) -> void:
 	move(direction)
 	melee(direction)
 	if canShootWaterGun: shoot()
-	#game_over()
 	
 ###### Input Functions ######
 
