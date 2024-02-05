@@ -161,7 +161,8 @@ animations = [{
 height = 67.6811
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 3
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_1ufj7")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_fehem")]
@@ -193,6 +194,7 @@ scale = Vector2(0.346612, 0.584285)
 sprite_frames = SubResource("SpriteFrames_404r7")
 
 [node name="GnomeHit" type="Area2D" parent="GnomeWeapon"]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GnomeWeapon/GnomeHit"]
 position = Vector2(-1.90735e-06, -1.90735e-06)

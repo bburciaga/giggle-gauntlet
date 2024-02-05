@@ -175,6 +175,7 @@ animations = [{
 }]
 
 [node name="Banana" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_htnei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

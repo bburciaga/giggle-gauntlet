@@ -13,9 +13,10 @@ enum WeaponState {
 const water_path: Resource = preload("res://entities/projectiles/Water.tscn")
 const banana_path: Resource = preload("res://entities/projectiles/Banana.tscn")
 
+var ATTACK: Attack = Attack.new(1, self.global_position, 5)
 var SPEED: float = 150.0
 var INITIAL_WEAPON_POSITION: Vector2 = Vector2(915, -5)
-var weaponState: WeaponState = WeaponState.WATERGUN
+var weaponState: WeaponState = WeaponState.GNOME
 #var health: int = 6
 var canDropBanana: bool = true
 var canShootWaterGun: bool = true
@@ -36,11 +37,6 @@ func _physics_process(delta) -> void:
 	#game_over()
 	
 ###### Input Functions ######
-
-#func damage(attack: Attack, activate: bool = false) -> void:
-	#health -= attack.damage
-	#velocity = (self.global_position - attack.position) * attack.knockback_force
-	#move_and_slide()
 
 func move(direction) -> void:
 	velocity = direction * SPEED
@@ -135,6 +131,8 @@ func add_projectile(degree: float) -> void:
 	#if health <= 0:
 		#get_tree().change_scene_to_file("res://menus/finish/Finish.tscn")
 
-func _on_gnome_hit_area_entered(area) -> void:
-	if (area.is_in_group("Enemies")):
-		area.take_damage()
+func _on_gnome_hit_area_entered(area: Area2D) -> void:
+	if area is HitboxComponent:
+		var hitbox: HitboxComponent = area
+		if area.is_in_group("Enemies"):
+			hitbox.damage(ATTACK)

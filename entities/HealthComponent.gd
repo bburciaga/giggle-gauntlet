@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name HealthComponent
+extends Node2D
 
 @export var MAX_HEALTH := 10.0
 @onready var PLAYER = get_node("/root/PlayerVariables")
@@ -11,8 +10,6 @@ func _ready():
 
 func damage (attack: Attack, activate: bool = false):
 	health -= attack.damage
-	
-	print(get_parent().name, " ", self.health)
 	
 	var animation: AnimatedSprite2D = get_parent().get_node("AnimatedSprite2D")
 	if health >= 1:

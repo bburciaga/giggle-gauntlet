@@ -14,25 +14,11 @@ func _physics_process(delta):
 	position += direction * speed * delta
 
 func _on_area_entered(area: Area2D):
-	var entity = area.get_parent()
 	if area is HitboxComponent:
 		var hitbox: HitboxComponent = area
-		match entity.name:
-			"Player":
-				hitbox.damage(ATTACK)
-				queue_free()
-			"Banana":
-				queue_free()
-			"Necromancer":
-				queue_free()
-
-func _on_body_entered(body: Node2D):
-	match (body.name):
-		"StaticBody2D":
-			queue_free()
-		"Player":
-			body.damage(ATTACK)
-			queue_free()
+		if area.is_in_group("Player"):
+			hitbox.damage(ATTACK)
+		queue_free()
 
 func _on_screen_exited():
 	queue_free()

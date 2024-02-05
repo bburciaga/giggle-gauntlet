@@ -10,8 +10,6 @@ extends CharacterBody2D
 const wrench_path = preload("res://entities/projectiles/Wrench.tscn")
 
 var SPEED = 15
-var health = 3
-
 
 func _physics_process(delta):
 	move()
@@ -20,26 +18,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 ##### Entity Actions #####
-
-func damage(attack: Attack, activate: bool = false) -> void:
-	if anim.animation != "Hurt":
-		health -= attack.damage
-	
-	velocity = (global_position - attack.position) * attack.knockback_force
-	move_and_slide()
-	
-	if health >= 1:
-		anim.play("Hurt")
-		await anim.animation_finished
-		anim.animation = "Idle"
-	else:
-		player_vars.score += 5
-		anim.play("Death")
-		await anim.animation_finished
-		self.queue_free()
-	
-	if activate:
-		$RotationTimer.start()
 
 func move() -> void:
 	var direction = (player.global_position - self.global_position).normalized()

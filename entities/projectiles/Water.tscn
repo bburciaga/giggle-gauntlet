@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ermiq"]
 
 [node name="Water" type="Area2D"]
+collision_mask = 6
 script = ExtResource("1_vcn5s")
 
 [node name="Water01" type="Sprite2D" parent="."]

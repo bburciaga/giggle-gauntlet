@@ -1,8 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://dm168nvssdbg2"]
+[gd_scene load_steps=29 format=3 uid="uid://dm168nvssdbg2"]
 
 [ext_resource type="Script" path="res://entities/enemies/Banana.gd" id="1_oikax"]
 [ext_resource type="Texture2D" uid="uid://dw0ys3ru3auy8" path="res://entities/assets/sprites/collectibles/Banana.png" id="1_r81e0"]
+[ext_resource type="PackedScene" uid="uid://cdya25dhs012d" path="res://entities/HealthComponent.tscn" id="2_rq1vs"]
 [ext_resource type="Script" path="res://entities/enemies/AttackArea.gd" id="3_5ohy6"]
+[ext_resource type="PackedScene" uid="uid://b0pqeqfef3go5" path="res://entities/HitboxComponent.tscn" id="3_46efg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7uni"]
+radius = 16.0
+height = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hndd3"]
 atlas = ExtResource("1_r81e0")
@@ -172,17 +178,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7uni"]
-radius = 16.0
-height = 32.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xap24"]
 size = Vector2(20, 6)
 
-[node name="Banana" type="CharacterBody2D"]
+[node name="Banana" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_oikax")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_rq1vs")]
+MAX_HEALTH = 3.0
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["Enemies"] instance=ExtResource("3_46efg")]
+collision_layer = 4
+collision_mask = 7
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(2, -9)
+shape = SubResource("CapsuleShape2D_v7uni")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, -7)

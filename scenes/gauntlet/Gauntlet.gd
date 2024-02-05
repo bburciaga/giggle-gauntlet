@@ -26,19 +26,19 @@ func _process(delta):
 			$UI/Banana.visible = true
 			$UI/Banana.play("Default")
 				
-	match $Player.health:
-		1:
-			$UI/Health.play("1")
-		2:
-			$UI/Health.play("2")
-		3:
-			$UI/Health.play("3")
-		4:
-			$UI/Health.play("4")
-		5:
-			$UI/Health.play("5")
-		6:
-			$UI/Health.play("6")
+	#match $Player.health:
+		#1:
+			#$UI/Health.play("1")
+		#2:
+			#$UI/Health.play("2")
+		#3:
+			#$UI/Health.play("3")
+		#4:
+			#$UI/Health.play("4")
+		#5:
+			#$UI/Health.play("5")
+		#6:
+			#$UI/Health.play("6")
 
 
 #func _on_ready():		

@@ -10,9 +10,11 @@ func _physics_process(delta):
 
 func _on_area_entered(area: Area2D):
 	var entity = area.get_parent()
-	if area.is_in_group("Enemies") and entity.has_method("damage"):
-		entity.damage(ATTACK)
-		queue_free()
+	if area is HitboxComponent:
+		var hitbox: HitboxComponent = area
+		if area.is_in_group("Enemies"):
+			hitbox.damage(ATTACK)
+			queue_free()
 
 func _on_screen_exited():
 	queue_free()

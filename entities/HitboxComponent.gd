@@ -5,7 +5,6 @@ extends Area2D
 
 func damage (attack: Attack, activate: bool = false) -> void:
 	if health_component:
-		print("Damage Health: ", attack.damage)
 		health_component.damage(attack)
 	
 		var entity = get_parent()
@@ -14,4 +13,4 @@ func damage (attack: Attack, activate: bool = false) -> void:
 			entity.move_and_slide()
 		
 			if activate:
-				$RotationTimer.start()
+				entity.get_node("RotationTimer").start()

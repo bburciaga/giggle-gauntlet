@@ -1,9 +1,17 @@
-[gd_scene load_steps=54 format=3 uid="uid://bxwov4sfh600f"]
+[gd_scene load_steps=56 format=3 uid="uid://bxwov4sfh600f"]
 
 [ext_resource type="Texture2D" uid="uid://w34n4o0hbsr2" path="res://entities/assets/sprites/enemies/Necromancer.png" id="1_e3vfi"]
 [ext_resource type="Script" path="res://entities/enemies/Necromancer.gd" id="1_qagpp"]
 [ext_resource type="PackedScene" uid="uid://cifnijn0br4a" path="res://entities/projectiles/Wrench.tscn" id="2_yvrpi"]
+[ext_resource type="PackedScene" uid="uid://cdya25dhs012d" path="res://entities/HealthComponent.tscn" id="3_j64ms"]
 [ext_resource type="Script" path="res://entities/enemies/PlayerDetection.gd" id="3_q7t8h"]
+[ext_resource type="PackedScene" uid="uid://b0pqeqfef3go5" path="res://entities/HitboxComponent.tscn" id="4_i2dxc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xd1wn"]
+height = 44.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br5g0"]
+height = 45.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5kud"]
 atlas = ExtResource("1_e3vfi")
@@ -355,24 +363,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br5g0"]
-height = 45.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xd1wn"]
-height = 44.0
-
-[node name="Necromancer" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+[node name="Necromancer" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 6
 script = ExtResource("1_qagpp")
 ammo = ExtResource("2_yvrpi")
 
-[node name="ProjectileTimer" type="Timer" parent="."]
+[node name="HealthComponent" parent="." instance=ExtResource("3_j64ms")]
+MAX_HEALTH = 3.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -20)
-sprite_frames = SubResource("SpriteFrames_hpofi")
-animation = &"Attack"
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["Enemies"] instance=ExtResource("4_i2dxc")]
+collision_layer = 4
+collision_mask = 7
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_xd1wn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_xd1wn")
 
 [node name="PlayerDetection" type="Area2D" parent="." groups=["Enemies"]]
 script = ExtResource("3_q7t8h")
@@ -381,17 +392,20 @@ script = ExtResource("3_q7t8h")
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_br5g0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
-shape = SubResource("CapsuleShape2D_xd1wn")
-
-[node name="RotationTimer" type="Timer" parent="."]
-wait_time = 0.4
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -20)
+sprite_frames = SubResource("SpriteFrames_hpofi")
+animation = &"Attack"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 3
 
-[connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]
+[node name="ProjectileTimer" type="Timer" parent="."]
+
+[node name="RotationTimer" type="Timer" parent="."]
+wait_time = 0.4
+
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]
 [connection signal="timeout" from="RotationTimer" to="." method="_on_rotation_timer_timeout"]

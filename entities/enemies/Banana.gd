@@ -6,7 +6,6 @@ extends CharacterBody2D
 @onready var player_vars = get_node("/root/PlayerVariables")
 
 const SPEED = 25
-var health = 3
 var ATTACK: Attack = Attack.new(1, self.global_position, -2.5)
 
 func _process(delta):
@@ -41,33 +40,12 @@ func move() -> void:
 	
 	move_and_slide()
 
-func damage(attack: Attack, activate: bool = false):
-	if anim.animation != "Hurt":
-		health -= attack.damage
-	
-	velocity = (global_position - attack.position) * attack.knockback_force
-	move_and_slide()
-		
-	if health >= 1:
-		anim.play("Hurt")
-		await anim.animation_finished
-		anim.animation = "Idle"
-	else:
-		player_vars.score += 5
-		anim.play("Death")
-		await anim.animation_finished
-		self.queue_free()
-	
-	if activate:
-		$RotationTimer.start()
-
 ##### Utility Methods #####
 
 func _on_attack_area_area_entered(area: Area2D):
-	var entity = area.get_parent()
 	if area is HitboxComponent:
 		var hitbox: HitboxComponent = area
-		if "Player" == entity.name:
+		if area.is_in_group("Player"):
 			anim.play("Attack")
 			hitbox.damage(ATTACK)
 
