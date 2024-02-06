@@ -16,7 +16,7 @@ const banana_path: Resource = preload("res://entities/projectiles/Banana.tscn")
 var ATTACK: Attack = Attack.new(1, self.global_position, 5)
 var SPEED: float = 150.0
 var INITIAL_WEAPON_POSITION: Vector2 = Vector2(915, -5)
-var weaponState: WeaponState = WeaponState.GNOME
+var weaponState: WeaponState = WeaponState.INACTIVE
 var canDropBanana: bool = true
 var canShootWaterGun: bool = true
 
